@@ -3,6 +3,9 @@
 input_txts:      
     - "cv.hsb"
     - "smartlamp.hsb"
+    - "sorbian_institute_monolingual.hsb"
+    - "web_monolingual.hsb"
+    - "witaj_monolingual.hsb"
     #- "vocabulary.txt"
     #- "test.txt"
 

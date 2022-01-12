@@ -2,6 +2,8 @@
 
 cd "${0%/*}"
 
+cp /sorbian_institute_monolingual.hsb /witaj_monolingual.hsb /web_monolingual.hsb /input
+
 python3 BASgenerator.py HSB.yaml
 
 mv corpus/ sentences/ speechrecorder/ transliterations/ /results/

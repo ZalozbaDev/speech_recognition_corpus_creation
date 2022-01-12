@@ -14,6 +14,17 @@ RUN apt install -y python3 python3-numpy python3-matplotlib python3-yaml
 RUN mkdir -p /results/
 RUN mkdir -p /input/
 
+# download & extract the additional corpora whose license is not clear
+RUN apt install -y wget
+
+RUN wget https://www.statmt.org/wmt20/unsup_and_very_low_res/sorbian_institute_monolingual.hsb.gz
+RUN wget https://www.statmt.org/wmt20/unsup_and_very_low_res/witaj_monolingual.hsb.gz
+RUN wget https://www.statmt.org/wmt20/unsup_and_very_low_res/web_monolingual.hsb.gz 
+
+RUN gunzip sorbian_institute_monolingual.hsb.gz
+RUN gunzip witaj_monolingual.hsb.gz
+RUN gunzip web_monolingual.hsb.gz 
+
 # just a default instruction, might be handy
 CMD ["/bin/bash"]
 
