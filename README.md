@@ -38,3 +38,23 @@ Die entsprechenden README-Dateien in den Verzeichnissen der Beispiele enthalten 
 ## Lizenz
 
 Siehe Datei "LICENSE".
+
+# Hornjoserbsce
+
+## Zestajenje rěčneho korpusa
+
+Dokumentacija wo zhotowjenju nahrawanjow za rěčny korpus namaka so we rjadowaku "report".
+
+W "examples" rjadowaku su wotpołožene přikłady za wuběr sadow za nahrawanje z tekstoweho korpusa.
+
+Wotpowědne README-dataje we rjadowakach přikładow wobsahuja drobne wopisowanje.
+
+## Awtorow
+
+- Dr. Ivan Kraljevski (Fraunhofer-Institut für Keramische Technologien und Systeme IKTS, Dresden, Deutschland)
+
+- Daniel Zoba (Załožba za serbski lud)
+
+## Licenca
+
+Hlej dataja "LICENSE".
