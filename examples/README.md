@@ -10,11 +10,9 @@
 
 If sentence selection is not needed, turn it off to get the normalized corpus, the vocabulary and the lexicon only. Change
 
-basic_type: "diphones"      # "phones", "diphones", "triphones" or empty not generating sentences
-
-to 
-
-basic_type:       # "phones", "diphones", "triphones" or empty not generating sentences
+    basic_type: "diphones"      # "phones", "diphones", "triphones" or empty not generating sentences
+    to 
+    basic_type:       # "phones", "diphones", "triphones" or empty not generating sentences
 
 to achieve this.
 
