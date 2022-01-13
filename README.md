@@ -29,12 +29,12 @@ vorhandenen Textkorpus erfolgt.
 
 Die entsprechenden README-Dateien in den Verzeichnissen der Beispiele enthalten detaillierte Informationen.
 
-## Authors
+## Autoren
 
 - Dr. Ivan Kraljevski (Fraunhofer-Institut für Keramische Technologien und Systeme IKTS, Dresden, Deutschland)
 
 - Daniel Sobe (Stiftung für das sorbische Volk)
 
-## License
+## Lizenz
 
 Siehe Datei "LICENSE".
