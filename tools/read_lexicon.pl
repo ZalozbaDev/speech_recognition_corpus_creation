@@ -68,10 +68,15 @@ while (1)
 		# $outputline =~ s/I/i/;
 		# $outputline =~ s/C/x/;
 		# $outputline =~ s/1/i/;
-		
+
+		# if O is last phoneme, make it longer
+		if (($index == (scalar(@phones) - 1)) && ($outputline =~ m/o/))
+		{
+			$outputline = "o:\t400";
+		}
 		# add length of phoneme
 		# mark those which are not "properly" mapped, e.g. where an "unexpected" phoneme might occur
-		if (($outputline =~ m/a/) || ($outputline =~ m/e/) || ($outputline =~ m/i/) ||
+		elsif (($outputline =~ m/a/) || ($outputline =~ m/e/) || ($outputline =~ m/i/) ||
 			($outputline =~ m/o/) || ($outputline =~ m/u/))
 		{
 			$outputline = $outputline . "\t200";	
