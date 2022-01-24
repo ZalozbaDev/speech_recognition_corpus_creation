@@ -1,5 +1,7 @@
 #!/usr/bin/perl -w
 
+use Term::ReadKey;
+
 # quit unless we have the correct number of command-line args
 $num_args = $#ARGV + 1;
 if ($num_args != 1) {
@@ -109,9 +111,24 @@ while (1)
 	close OUTHANDLE;
 	
 	system("mbrola /usr/share/mbrola/cz2/cz2 mbrola_input.pho mbrola_output.wav");
-	system("aplay mbrola_output.wav");
 	
-	WaitForKey();
+	$repeatme = 1;
+	while ($repeatme == 1)
+	{
+		system("aplay -q mbrola_output.wav");
+
+		print "Press 'Enter' for next, any other key for repeat.\n";
+		ReadMode('cbreak');
+		$key = ReadKey(0);
+		ReadMode('Normal');
+		
+		if ($key =~ m/\n/) 
+		{
+			$repeatme = 0;	
+		}
+	}
+	
+	print "\n\n";
 }
 
 
