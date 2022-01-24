@@ -59,11 +59,11 @@ while (1)
 		
 		# map to phonemes of MBROLA "cz2" voice
 		$outputline =~ s/E/e/;
-		$outputline =~ s/I/i/;
 		$outputline =~ s/O/o/;
-		$outputline =~ s/U/u/;
 		$outputline =~ s/w/v/;
 		$outputline =~ s/h/h\\/;
+		# $outputline =~ s/U/u/;
+		# $outputline =~ s/I/i/;
 		# $outputline =~ s/C/x/;
 		# $outputline =~ s/1/i/;
 		
@@ -78,11 +78,23 @@ while (1)
 		{
 			if ($outputline =~ m/1/)
 			{
-				$outputline = "; !!!! improvised mapping of 'y'!!!!\ni\t200\n; !!!! improvised mapping of 'y'!!!!";
+				$outputline = "; !!!! improvised mapping of 'y'!!!!\ni\t100\n; !!!! improvised mapping of 'y'!!!!";
+			}
+			elsif ($outputline =~ m/I/)
+			{
+				$outputline = "; !!!! improvised mapping of 'Ě'!!!!\ni\t50\ne\t50\n; !!!! improvised mapping of 'Ě'!!!!";
+			}
+			elsif ($outputline =~ m/U/)
+			{
+				$outputline = "; !!!! improvised mapping of 'Ó'!!!!\nu\t50\n; !!!! improvised mapping of 'Ó'!!!!";
 			}
 			elsif ($outputline =~ m/C/)
 			{
 				$outputline = "; !!!!improvised mapping of 'ch'!!!!\nx\t100\n; !!!!improvised mapping of 'ch'!!!!";
+			}
+			elsif ($outputline =~ m/jn/)
+			{
+				$outputline = "; !!!!improvised mapping of 'ń'!!!!\nj\t50\nn\t50\n; !!!!improvised mapping of 'ń'!!!!";
 			}
 			else
 			{
