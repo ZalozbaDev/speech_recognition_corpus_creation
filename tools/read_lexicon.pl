@@ -176,7 +176,7 @@ elsif ($voice =~ m/de/)
 				# remapping
 				$outputline =~ s/o/O/;
 				$outputline =~ s/i/I/;
-				$outputline =~ s/e/E/;
+				$outputline =~ s/e/e:/;
 				$outputline =~ s/u/U/;
 				$outputline =~ s/1/Y/;
 				
