@@ -3,3 +3,10 @@ $_CH_C	ts	chcedźa, chce, chcyše, chcemy, chcu, chcych, chceće (twjerdy "ch" n
 $_Ł_#C	*	łžicy ("l" na zapocatku pred konsonantom so smorny)
 A_Š_Ł	j S	zašłosće, zašłe ("j" so mjez "a" a "sl" zasuhny)  - ale: našła?
 Ó_Ž_D	j Z	kóždy, kóždolětnu, kóždeho, kóždu, kóžde, kóždemu ("j" so mjez "o" a "zd" zasuhny)
+#V_Ž_K	S	nałožki, chěžki, třiróžku, podłožki, nóžki, wotnožkow, knižku, hdźežkuli, hněžko, ćežko (po wokalu a pred "k" zmeni so "z" na "S")
+#V_Z_K	s	zwjazk, wotrězk, rjećazk, wurězki, rozkładźe, tyzku, pomazkami (po wokalu a pred "k" zmeni so "z" na "s")
+_Ž_$	S	kaž, tež, kotrež, dołhož, hdyž, jenož, dokelž, štož, ručež ("z" na koncu slowa so zmeni na "S")
+Ě_H_#C	*	přěhrać, něhdźe, wuzběhny, něhdy, lěhwo, přěhrać ("h" po "e" pred konsonantom so smorny)
+Ě_H_$	*	sněh, žiwjenjoběh ("h" po "e" na koncu slowa so smorny)
+E_CH_	C	kładźechu, nańdźechu, přednjesechmy, přińdźechmy, nańdźech, potrjechi ("ch" po "e" so zmeni na "C")
+I_CH_	C	serbskich, młódšich, nichtó, jich, přichodnje ("ch" po "i" so zmeni na "C") - ale: přichadźachu, přichwata
