@@ -6,6 +6,8 @@
 
 - ex2: Uses corpora from ex1 plus more corpora which are downloaded, and newer G2P rules. Takes quite a while to process.
 
+- ex3: Uses MIT licensed corpora and custom G2P rules. No sentence selection. Processing is fast.
+
 ### Hints
 
 If sentence selection is not needed, turn it off to get the normalized corpus, the vocabulary and the lexicon only. Change

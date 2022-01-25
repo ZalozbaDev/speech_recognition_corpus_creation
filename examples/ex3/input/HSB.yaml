@@ -1,0 +1,27 @@
+# Configuration file
+
+input_txts:      
+    - "cv.hsb"
+    - "smartlamp.hsb"
+    #- "vocabulary.txt"
+    #- "test.txt"
+
+phoneme_inventory:  "phonmap.txt"
+exceptions_file:    "exceptions_v3.txt"
+
+mode:       "sampa"         # "uasr" or "sampa"
+# basic_type: "diphones"      # "phones", "diphones", "triphones" or empty not generating sentences
+case:       "uc"            # "uc" - upper case, "lc" - lower case, "or" - original
+split:      5               # number of separate datasets
+offset:     0              # id starting number
+num_sentences: 750           # maximal number of sentences in all splits
+min_duration:  2            # minimal duration in seconds of speech per sentence (0-3s)
+no_speakers:   3            # number of possible speakers per split
+user_vocab: 
+        #- "user1.vocab"    # use existing vocabularies to restrict the sentences from the corpus
+        #- "user2.vocab"
+names: 
+    - "phones"
+    - "diphones"
+    - "triphones"
+scoring_type: 3  # 1, 2 or 3; choose 2 for negative log-prob weights, 3 for sentence weights
