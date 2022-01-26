@@ -1,7 +1,13 @@
 #C_W_$	*   ??? je tute wuwzaće trebne, njenamakam priklad ???
 $_H_#V	h	??? to njeje zane wuwzace ???
-#V_Ž_#C	S   ??? załožbowe, naležnosći, přibrjóžne, Drježdźanami, wažne, móžnosć, knižnej, kóždeho - ale: nałožki, chěžki
+#V_Ž_#C	S   ??? załožbowe, naležnosći, přibrjóžne, Drježdźanami, wažne, móžnosć, knižnej, kóždeho - ale: nałožki, chěžki (#V_Ž_K	S)
 #C_Ž_#V	S   ??? je tute wuwzaće trebne, njenamakam priklad ???
-#V_Z_#C	s	??? prózdninach, rozdźělenje, mjezwočach, zmjerzlinu, wuzwoleny - ale: zwjazk
-
-
+#V_Z_#C	s	??? prózdninach, rozdźělenje, mjezwočach, zmjerzlinu, wuzwoleny - ale: zwjazk (#V_Z_K	s)
+Ě_H_	i	??? sćěhowaštej, běhu, sněhom, pozběhuja, woblěhowaneje
+_Ě_H	e	??? (dito)
+_H_#C	*	??? (dito)
+_Ł_U	*	??? hłuboko, Łužisku, słušeja, wobłuki, jabłuka
+_Ł_Y	*	??? błyskami, słyšeštaj, cyłym, přesłyšowanju, wjesoły, małych
+_Ł_$	*	??? přetorhnył, kotoł, puknył, prajił 
+_E_Ć	e	??? zapřijeće, přećiwo, słyšeć, sadźeć, třiceći - ale: swjećachu, třeći, pjeć (???)
+_E_Č	e	??? samopječenym, zwěrječich, nječinimy, ćeče, woblečene, přečasto, bječa - ale: preč, wječorach (???) 
