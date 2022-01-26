@@ -3,7 +3,7 @@ $_H_#V	h	??? to njeje zane wuwzace ???
 #V_Ž_#C	S   ??? załožbowe, naležnosći, přibrjóžne, Drježdźanami, wažne, móžnosć, knižnej, kóždeho - ale: nałožki, chěžki (#V_Ž_K	S)
 #C_Ž_#V	S   ??? je tute wuwzaće trebne, njenamakam priklad ???
 #V_Z_#C	s	??? prózdninach, rozdźělenje, mjezwočach, zmjerzlinu, wuzwoleny - ale: zwjazk (#V_Z_K	s)
-Ě_H_	i	??? sćěhowaštej, běhu, sněhom, pozběhuja, woblěhowaneje
+Ě_H_	i	??? sćěhowaštej, běhu, sněhom, pozběhuja, woblěhowaneje - ale: přěhrać
 _Ě_H	e	??? (dito)
 _H_#C	*	??? (dito)
 _Ł_U	*	??? hłuboko, Łužisku, słušeja, wobłuki, jabłuka
@@ -11,3 +11,10 @@ _Ł_Y	*	??? błyskami, słyšeštaj, cyłym, přesłyšowanju, wjesoły, małych
 _Ł_$	*	??? přetorhnył, kotoł, puknył, prajił 
 _E_Ć	e	??? zapřijeće, přećiwo, słyšeć, sadźeć, třiceći - ale: swjećachu, třeći, pjeć (???)
 _E_Č	e	??? samopječenym, zwěrječich, nječinimy, ćeče, woblečene, přečasto, bječa - ale: preč, wječorach (???) 
+O_W_#V	u	??? Domowinu, zwjazkowym, nowej, plahowarni
+_Ł_#C	*	??? tołsta, hołbicu, dospołnosće
+_Ł_$	*	??? hasnył, stał, rozsudźił
+N_J_	*	??? połoženje, spjelnjenje, žadanja, njewolerjow - ale: krasnje
+R_J_	*	??? zwěrjenca, derje, zarjadniske, wobydlerjemi, šulerjow, wučerja(?) - ale: trjeba, rjekny, srjedź
+B_J_	*	??? dyrbjachu, twórbje(?), njebjo, wosebje, přilubjene - ale: bjez, 
+

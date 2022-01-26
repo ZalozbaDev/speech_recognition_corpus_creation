@@ -1,5 +1,6 @@
-#C_Ł_$	*	zmysł, přinjesł, wotrostł ("l" na koncu po konsonance so smorny) - ale: móhł?
+#C_Ł_$	*	zmysł, přinjesł, wotrostł, móhł ("l" na koncu po konsonance so smorny)
 $_CH_C	ts	chcedźa, chce, chcyše, chcemy, chcu, chcych, chceće (twjerdy "ch" na zapocatku pred "c" so smorny) - ale: nic preco?
+$_CH_	k	chłódźa, Chrósćicach, chórje, chowanka, chětro, chlěbom (twjerdy "ch" za zapocatku, jeli njesleduje "c", so zmeni na "k")
 $_Ł_#C	*	łžicy ("l" na zapocatku pred konsonantom so smorny)
 A_Š_Ł	j S	zašłosće, zašłe, našła ("j" so mjez "a" a "sl" zasuhny)
 U_Š_Ł	j S	wušło, dalse priklady??? ("j" so mjez "u" a "sl" zasuhny)
@@ -27,3 +28,12 @@ _E_Ž	e	tež, knježi, leži, hdźež - ale: kotrež, šćežce(???), Drježdźa
 _H_$	*	sněh, žiwjenjoběh, wobsah ("h" na koncu slowa so smorny)
 $_H_#C	*	hrodźišću, hłós, hdźež, hłownu, hdyž, hladajće ("h" na zapocatku slowa pred konsonantom so smorny)
 #C_H_	*	njewobhladujemy, zwotorhamy, pomha, rozhłós, wobhospodarjerjam ("h" po konsonance so smorny, to je ale zdzela efekt prepozicijow)
+Ě_CH_	C	spěchować, běchu, dźěchmy, třěchi, wuspěcha, wšěch, wujěcha, něchtó ("ch" po "e" so zmeni na "C")
+_O_Ł	o	kołowokoło, dospołnosće, rozmołwy, zamołwitosći, powołaja, tołsta, hołbicu ("o" pred "l" je zacinjeny) - ale: delnjołužiskim (hranica slowow)
+_O_W	o	powšitkowne, pruwowanski, hłownaj, jadrowej, towarstwow, institucijow, słowjanskej ("o" pred "w" je zacinjeny) 
+O_W_#C	*	sadowcami, bratrowska, powšitkownych, kralownu, sportowni ("w" po "o" pred wokalom so wuwosta) - ale nic preco (krótke "u" abo "h" slysec) 
+#C_W_J	*	zwjetša, wobsydstwje, wuměłstwje ("w" po konsonance pred "j" so smorne)
+_W_#C	u	přestawce, Žitawčanow, najnowšim, stawje, nawróća, zjawnje ("w" pred konsonantom zmeni so na "u") - ale: předewšěm
+$_W_J	j	wjacorych ("wj" na zapocatku slowa so "w" smorny) - ale: wjele, wječorach
+$_W_#C	*	wšak, wsy ("w" na zapocatku slowa pred konsonantom so smorny) - ale: "we wsy" 
+_W_$	*	Błótow, etapow, wosadow, rjadow ("w" na koncu slowa so smorny) - ale: staw
