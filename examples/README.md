@@ -8,6 +8,8 @@
 
 - ex3: Uses MIT licensed corpora and custom G2P rules. No sentence selection. Processing is fast.
 
+- ex4: Uses MIT licensed smartlamp corpora and custom G2P rules. No sentence selection. Processing is fast.
+
 ### Hints
 
 If sentence selection is not needed, turn it off to get the normalized corpus, the vocabulary and the lexicon only. Change

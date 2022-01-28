@@ -1,0 +1,55 @@
+#C_W_$	*
+#C_Ł_$	*
+$_CH_C	ts
+$_H_#V	h
+$_Ł_#C	*
+A_Š_Ł	j S 
+#V_Ž_#C	S
+#C_Ž_#V	S
+#V_Z_#C	s
+_Ž_$	S
+Ě_H_	i
+_Ě_H	e
+E_CH_	C
+I_CH_	C
+I_J_$	*
+K_Ń_$	*
+S_Ń_$	*
+T_Ř_I	ts
+T_Ř_Ě	ts
+U_Š_Ł	j S
+_Ł_U	*
+_Ł_Y	*
+_Ł_$	*
+_B_$	p
+_D_$	t
+_DŹ_$	tS
+_Z_$	s
+_E_DŹ	e
+E_J_I	*
+_E_J	e
+_E_Ć	e
+_E_Č	e
+_E_Ń	e
+_E_Ž	e
+_H_#C	*
+#C_H_	*
+_H_$	*
+Ě_CH_	C
+_O_Ł	o
+_O_W	o
+O_W_#C	h
+O_W_#V	u
+_W_#C	*
+_Ł_#C	*
+$_W_#C	*
+$_W_J	w
+#V_W_$	*
+#C_W_$	*
+_W_#C	*
+_Ł_$	*
+$_CH_	k h
+_N_J	n j
+N_J_	*
+R_J_	*
+B_J_	*
