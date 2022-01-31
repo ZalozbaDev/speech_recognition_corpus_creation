@@ -17,4 +17,4 @@ _Ł_$	*	??? hasnył, stał, rozsudźił
 N_J_	*	??? połoženje, spjelnjenje, žadanja, njewolerjow - ale: krasnje
 R_J_	*	??? zwěrjenca, derje, zarjadniske, wobydlerjemi, šulerjow, wučerja(?) - ale: trjeba, rjekny, srjedź
 B_J_	*	??? dyrbjachu, twórbje(?), njebjo, wosebje, přilubjene - ale: bjez, 
-
+#C_H_	*	??? rozhorić so, podhódnoćić
