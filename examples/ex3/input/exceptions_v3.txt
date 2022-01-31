@@ -17,6 +17,10 @@ S_Ń_$	*	njećisń, dalse priklady??? ("n" na koncu slowa po "s" so smorny)
 T_Ř_I	ts	kotřiž, třiróžku, tři, njeroztřihaš, jutřišeje, wótřiši, někotři (kombinacija "tri" so wurjekuje "tsi") - ale: problem dwojny t
 T_Ř_Ě	ts	třěšneho, třěšny, třěćinje, třělić  (kombinacija "tre" so wurjekuje "tse") - ale: problem dwojny t
 _B_$	p	wob, chlěb, Serb, hrib, rub ("b" na koncu slowa zmeny so na "p")
+_B_K	p	wobkruća, wobknježa, wuhibki, hubkowaše, žabka, babka ("b" pred k so zmeny na "p")
+_B_S	p	serbskim, wobstejachu, wobswětowych, herbstwa ("b" pred s so zmeny na "p")
+_B_Š	p	wobšěrnym, serbšćiny, najlubšej, hłubši ("b" pred s so zmeny na "p")
+_B_CH	p	wobchody, wobchad, wobchować  ("b" pred ch so zmeny na "p")
 _D_$	t	lód, zawod, sad, před, zakład, zarjad ("d" na koncu slowa zmeny so na "t")
 _DŹ_$	tS	srjedź, pojědź, wosrjedź, přińdź, jědź, snadź ("dz" na koncu slowa zmeny so na "tS")
 _Z_$	s	mjez, bjez, naraz, wukaz, raz, z - ale: z druhdy jako "z"?
