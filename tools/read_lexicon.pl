@@ -223,7 +223,8 @@ elsif ($voice =~ m/de/)
 					}
 					elsif ($outputline =~ m/dZ/)
 					{
-						$outputline = "; !!!!improvised mapping of 'dź'!!!!\nd\t50\nZ\t50\n; !!!!improvised mapping of 'dź'!!!!";
+						# $outputline = "; !!!!improvised mapping of 'dź'!!!!\nd\t50\nZ\t50\n; !!!!improvised mapping of 'dź'!!!!";
+						$outputline = "d\t50\nZ\t50";
 					}
 					else
 					{
