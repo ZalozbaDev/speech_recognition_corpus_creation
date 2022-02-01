@@ -6,6 +6,7 @@ use Term::ReadKey;
 $num_args = $#ARGV + 1;
 if ($num_args < 1) {
     print "\nUsage: read_lexicon.pl lexicon_sampa.lex [mbrola_voice]\n";
+    print "Example: ./read_lexicon.pl ../examples/ex3/output/hsb_sampa.lex de6\n";
     exit;
 }
 
@@ -52,6 +53,8 @@ if ($voice eq "cz2")
 		
 		printf "Processing word %s:\n", $textual[$myline];
 		
+		findAlternatives($textual[$myline], $myline);
+						
 		@phones = split(" ", $phonetical[$myline]);
 		
 		# print join (", ", @phones);
@@ -152,81 +155,93 @@ elsif ($voice =~ m/de/)
 		
 		# printf "Processing word %s with phonemes %s.\n", $textual[$myline], $phonetical[$myline];
 		
-		printf "Processing word %s:\n", $textual[$myline];
-		
-		@phones = split(" ", $phonetical[$myline]);
-		
-		# print join (", ", @phones);
-		
-		system("rm -f mbrola_input.pho mbrola_output.wav");
-		
-		open(OUTHANDLE, "> mbrola_input.pho") or die ("Cannot open output file for writing!\n");
-		
-		for ($index = 0; $index < scalar(@phones); $index++)
-		{
-			# printf "Processing %s.\n", $phones[$index];
-			$outputline = $phones[$index];
-			
-			# map to phonemes of MBROLA "deX" voice
+		($minentry, $maxentry) = findAlternatives($textual[$myline], $myline);
 	
-			# extra length for vowels
-			if (($outputline =~ m/a/) || ($outputline =~ m/E/) || ($outputline =~ m/e/) || ($outputline =~ m/i/) ||
-				($outputline =~ m/O/) || ($outputline =~ m/o/) || ($outputline =~ m/u/) || ($outputline =~ m/1/))
-			{
-				# remapping
-				$outputline =~ s/o/O/;
-				$outputline =~ s/i/I/;
-				$outputline =~ s/e/e:/;
-				$outputline =~ s/u/U/;
-				$outputline =~ s/1/Y/;
-				
-				$outputline = $outputline . "\t200";	
+		$myline = $minentry;
+		
+		$alternatives = $maxentry - $minentry;
+		
+		$newword = 0;
+		while ($newword == 0)
+		{
+			printf "Processing word %s:\n", $textual[$myline];
+		
+			if ($alternatives > 0) {
+				printf "Phonemes(%d/%d): %s\n", $myline - $minentry + 1, $maxentry - $minentry + 1, $phonetical[$myline];
+			} else {
+				printf "Phonemes: %s\n", $phonetical[$myline];
 			}
-			else
+			
+			@phones = split(" ", $phonetical[$myline]);
+			
+			# print join (", ", @phones);
+			
+			system("rm -f mbrola_input.pho mbrola_output.wav");
+			
+			open(OUTHANDLE, "> mbrola_input.pho") or die ("Cannot open output file for writing!\n");
+			
+			for ($index = 0; $index < scalar(@phones); $index++)
 			{
-				$outputline =~ s/w/v/;
+				# printf "Processing %s.\n", $phones[$index];
+				$outputline = $phones[$index];
 				
-				
-				if ($outputline =~ m/I/)
+				# map to phonemes of MBROLA "deX" voice
+		
+				# extra length for vowels
+				if (($outputline =~ m/a/) || ($outputline =~ m/E/) || ($outputline =~ m/e/) || ($outputline =~ m/i/) ||
+					($outputline =~ m/O/) || ($outputline =~ m/o/) || ($outputline =~ m/u/) || ($outputline =~ m/1/))
 				{
-					$outputline = "; !!!! improvised mapping of 'Ě'!!!!\nI\t50\nE\t50\n; !!!! improvised mapping of 'Ě'!!!!";
-				}
-				elsif ($outputline =~ m/U/)
-				{
-					$outputline = "U\t50";
-				}
-				#elsif ($outputline =~ m/r/)
-				#{
-				#	$outputline = "6\t100";
-				#}
-				elsif ($outputline =~ m/jn/)
-				{
-					$outputline = "; !!!!improvised mapping of 'ń'!!!!\nj\t50\nn\t50\n; !!!!improvised mapping of 'ń'!!!!";
-				}
-				elsif ($outputline =~ m/dZ/)
-				{
-					$outputline = "; !!!!improvised mapping of 'dź'!!!!\nd\t50\nZ\t50\n; !!!!improvised mapping of 'dź'!!!!";
+					# remapping
+					$outputline =~ s/o/o:/;
+					$outputline =~ s/i/I/;
+					$outputline =~ s/e/e:/;
+					$outputline =~ s/u/U/;
+					$outputline =~ s/1/Y/;
+					
+					$outputline = $outputline . "\t200";	
 				}
 				else
 				{
-					$outputline = $outputline . "\t100";	
+					$outputline =~ s/w/v/;
+					
+					
+					if ($outputline =~ m/I/)
+					{
+						$outputline = "; !!!! improvised mapping of 'Ě'!!!!\nI\t50\nE\t50\n; !!!! improvised mapping of 'Ě'!!!!";
+					}
+					elsif ($outputline =~ m/U/)
+					{
+						$outputline = "U\t50";
+					}
+					#elsif ($outputline =~ m/r/)
+					#{
+					#	$outputline = "6\t100";
+					#}
+					elsif ($outputline =~ m/jn/)
+					{
+						$outputline = "; !!!!improvised mapping of 'ń'!!!!\nj\t50\nn\t50\n; !!!!improvised mapping of 'ń'!!!!";
+					}
+					elsif ($outputline =~ m/dZ/)
+					{
+						$outputline = "; !!!!improvised mapping of 'dź'!!!!\nd\t50\nZ\t50\n; !!!!improvised mapping of 'dź'!!!!";
+					}
+					else
+					{
+						$outputline = $outputline . "\t100";	
+					}
 				}
+				
+				printf "%s\n", $outputline;
+				print OUTHANDLE $outputline . "\n";
 			}
 			
-			printf "%s\n", $outputline;
-			print OUTHANDLE $outputline . "\n";
-		}
+			close OUTHANDLE;
 		
-		close OUTHANDLE;
+			system("mbrola /usr/share/mbrola/$voice/$voice mbrola_input.pho mbrola_output.wav");
 		
-		system("mbrola /usr/share/mbrola/$voice/$voice mbrola_input.pho mbrola_output.wav");
-		
-		$repeatme = 1;
-		while ($repeatme == 1)
-		{
 			system("aplay -q mbrola_output.wav");
 	
-			print "Press 'Enter' for next, any other key for repeat.\n";
+			print "Press 'Enter' for new word, any other key for repeat/alternative.\n";
 			ReadMode('cbreak');
 			$key = ReadKey(0);
 			while (defined($dummy=ReadKey(-1))) {};
@@ -234,11 +249,21 @@ elsif ($voice =~ m/de/)
 			
 			if ($key =~ m/\n/) 
 			{
-				$repeatme = 0;	
+				$newword = 1;	
 			}
+			else
+			{
+				$myline++;	
+				if ($myline > $maxentry)
+				{
+					$myline = $minentry;	
+				}
+			}
+			
+			print "\n";
 		}
 		
-		print "\n\n";
+		print "-----------------------------------------------------\n\n";
 	}
 }
 else
@@ -250,4 +275,36 @@ else
 sub WaitForKey() {
     print "\nPress any key to continue...";
     chomp($key = <STDIN>);
+}
+
+sub findAlternatives() {
+	$word     = $_[0];
+	$position = $_[1];
+	
+	$minimum = $position;
+	$maximum = $position;
+	
+	# printf "Search for alternatives of %s at %d.\n", $word, $position; 
+	
+	# printf ("Lexicon entries:\n");
+	
+	while ($textual[$position] eq $word) {
+		# printf "ALT!\n";
+		$position--;
+	}
+	$position++;
+	$minimum = $position;
+	
+	while ($textual[$position] eq $word) {
+		#if ($position == $selected) {
+			# printf "--> %s\n", $phonetical[$position];
+		#} else {
+			# printf "    %s\n", $phonetical[$position];
+		#}
+		$position++;	
+	}
+	$position--;
+	$maximum = $position;
+	
+	return ($minimum, $maximum);
 }
