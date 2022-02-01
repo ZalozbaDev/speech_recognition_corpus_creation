@@ -207,7 +207,7 @@ elsif ($voice =~ m/de/)
 					
 					if ($outputline =~ m/I/)
 					{
-						$outputline = "; !!!! improvised mapping of 'Ě'!!!!\nI\t50\nE\t50\n; !!!! improvised mapping of 'Ě'!!!!";
+						$outputline = "; !!!! improvised mapping of 'Ě'!!!!\ni:\t30\nj\t30\nE\t30\n; !!!! improvised mapping of 'Ě'!!!!";
 					}
 					elsif ($outputline =~ m/U/)
 					{
