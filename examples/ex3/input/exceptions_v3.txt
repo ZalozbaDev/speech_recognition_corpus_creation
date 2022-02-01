@@ -41,9 +41,11 @@ _H_#C	*	njewobhladujemy, zahroda, njehraje, wothłós, hrodźišću, hłós, hd�
 Ě_CH_	C	spěchować, běchu, dźěchmy, třěchi, wuspěcha, wšěch, wujěcha, něchtó ("ch" po "e" so zmeni na "C")
 _O_Ł	o	kołowokoło, dospołnosće, rozmołwy, zamołwitosći, powołaja, tołsta, hołbicu ("o" pred "l" je zacinjeny) - ale: delnjołužiskim (hranica slowow)
 _O_W	o	powšitkowne, pruwowanski, hłownaj, jadrowej, towarstwow, institucijow, słowjanskej ("o" pred "w" je zacinjeny) 
-O_W_#C	*	sadowcami, bratrowska, powšitkownych, kralownu, sportowni ("w" po "o" pred wokalom so wuwosta) - ale nic preco (krótke "u" abo "h" slysec) 
+O_W_#C	u	sadowcami, bratrowska, powšitkownych, kralownu, sportowni ("w" po "o" pred konsonantom so zmeni na "u") - ale: druhdy so wuwosta 
+O_Ł_#C	u	zamołwiteho, žołtu, rozmołwjał, namołwja, tołstu ("l" po "o" pred konsonantom so zmeni na "u") - ale: druhdy so wuwosta 
 #C_W_J	*	zwjetša, wobsydstwje, wuměłstwje ("w" po konsonance pred "j" so smorne)
-_W_#C	u	přestawce, Žitawčanow, najnowšim, stawje, nawróća, zjawnje ("w" pred konsonantom zmeni so na "u") - ale: předewšěm
+#V_W_#C	u	přestawce, Žitawčanow, najnowšim, stawje, nawróća, zjawnje ("w" pred konsonantom zmeni so na "u") - ale: předewšěm
+#C_W_#C	u	dito
 $_W_J	j	wjacorych ("wj" na zapocatku slowa so "w" smorny) - ale: wjele, wječorach
 $_W_#C	*	wšak, wsy ("w" na zapocatku slowa pred konsonantom so smorny) - ale: "we wsy" 
 O_W_$	*	Błótow, etapow, wosadow, rjadow ("w" na koncu slowa po "o" so smorny)
