@@ -10,6 +10,8 @@
 
 - ex4: Uses MIT licensed smartlamp corpora and custom G2P rules. No sentence selection. Processing is fast.
 
+- ex5: Uses most recent scripts, MIT licensed corpora and most recent phoneme map and G2P rules. Recommended! Processing is fast.
+
 ### Hints
 
 If sentence selection is not needed, turn it off to get the normalized corpus, the vocabulary and the lexicon only. Change

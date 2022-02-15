@@ -1,0 +1,58 @@
+#C_Ł_$	*	zmysł, přinjesł, wotrostł, móhł ("l" na koncu po konsonance so smorny)
+$_CH_C	*	chcedźa, chce, chcyše, chcemy, chcu, chcych, chceće (twjerdy "ch" na zapocatku pred "c" so smorny) - ale: nic preco?
+$_CH_#V	k	chłódźa, Chrósćicach, chórje, chowanka, chětro, chlěbom (twjerdy "ch" za zapocatku, jeli njesleduje "c", so zmeni na "k")
+$_CH_L	k	chłódźa, Chrósćicach, chórje, chowanka, chětro, chlěbom (twjerdy "ch" za zapocatku, jeli njesleduje "c", so zmeni na "k")
+$_Ł_#C	*	łžicy ("l" na zapocatku pred konsonantom so smorny)
+A_Š_Ł	j S	zašłosće, zašłe, našła ("j" so mjez "a" a "sl" zasuhny)
+U_Š_Ł	j S	wušło, dalse priklady??? ("j" so mjez "u" a "sl" zasuhny)
+Ó_Ž_D	j Z	kóždy, kóždolětnu, kóždeho, kóždu, kóžde, kóždemu ("j" so mjez "o" a "zd" zasuhny)
+#V_Ž_K	S	nałožki, chěžki, třiróžku, podłožki, nóžki, wotnožkow, knižku, hdźežkuli, hněžko, ćežko (po wokalu a pred "k" zmeni so "z" na "S")
+#V_Z_K	s	zwjazk, wotrězk, rjećazk, wurězki, rozkładźe, tyzku, pomazkami (po wokalu a pred "k" zmeni so "z" na "s")
+_Ž_$	S	kaž, tež, kotrež, dołhož, hdyž, jenož, dokelž, štož, ručež ("z" na koncu slowa so zmeni na "S")
+Ě_H_#C	*	přěhrać, něhdźe, wuzběhny, něhdy, lěhwo, přěhrać ("h" po "e" pred konsonantom so smorny)
+E_CH_	C	kładźechu, nańdźechu, přednjesechmy, přińdźechmy, nańdźech, potrjechi ("ch" po "e" so zmeni na "C")
+I_CH_	C	serbskich, młódšich, nichtó, jich, přichodnje ("ch" po "i" so zmeni na "C") - ale: přichadźachu, přichwata
+I_J_$	*	studij, Handrij, Maćij, gymnazij, julij, kij ("j" na koncu slowa po "i" so smorny)
+K_Ń_$	*	tykń, wotamkń, dalse priklady??? ("n" na koncu slowa po "k" so smorny)
+S_Ń_$	*	njećisń, dalse priklady??? ("n" na koncu slowa po "s" so smorny)
+#V_Ń_$	n	kamjeń, zakoń, tydźeń, woheń, swjedźeń ("n" na koncu slowa po wokalu zmeni so na "n")
+I_Ń_	n	přińdź, začińtaj ("n" po "i" so zmeni na "n")
+T_Ř_I	ts	kotřiž, třiróžku, tři, njeroztřihaš, jutřišeje, wótřiši, někotři (kombinacija "tri" so wurjekuje "tsi") - ale: problem dwojny t
+T_Ř_Ě	ts	třěšneho, třěšny, třěćinje, třělić  (kombinacija "tre" so wurjekuje "tse") - ale: problem dwojny t
+_B_$	p	wob, chlěb, Serb, hrib, rub ("b" na koncu slowa zmeny so na "p")
+_B_K	p	wobkruća, wobknježa, wuhibki, hubkowaše, žabka, babka ("b" pred k so zmeny na "p")
+_B_S	p	serbskim, wobstejachu, wobswětowych, herbstwa ("b" pred s so zmeny na "p")
+_B_Š	p	wobšěrnym, serbšćiny, najlubšej, hłubši ("b" pred s so zmeny na "p")
+_B_CH	p	wobchody, wobchad, wobchować  ("b" pred ch so zmeny na "p")
+_D_$	t	lód, zawod, sad, před, zakład, zarjad ("d" na koncu slowa zmeny so na "t")
+_D_K	t	zrědka, doprědka, srědki, přehladka, wuslědkow ("d" pred k zmeny so na "t")
+_D_S	t	předsydki, předstajeja, wobsydstwo, susodstwje ("d" pred s zmeny so na "t")
+_D_Š	t	najradšo, najmłódšej, předšulskich, podšmórnyło, rědšo ("d" pred s zmeny so na "t")
+_D_CH	t	předchadźacym  ("d" pred ch zmeny so na "t")
+_D_Č	*	přeswědčeny, předčitać, wobswědčeja, wuswědčenju ("d" pred c so smorny)
+_DŹ_$	tS	srjedź, pojědź, wosrjedź, přińdź, jědź, snadź ("dz" na koncu slowa zmeny so na "tS")
+_Z_$	s	mjez, bjez, naraz, wukaz, raz, z - ale: z druhdy jako "z"?
+E_J_I	*	stejimy, meji, čejim (w kombinacije "eji" so "j" smorny)
+_E_DŹ	e	chcedźa, srjedź, njeskedźbliwa, swjedźenskim, dowjedźe, posedźenja, rjedźe (zacinjeny "e" pred "dz") 
+_E_J	e	prawopisneje, poskitkej, stej, měšćanskeje, ćežkej, wjesnej, čornej (zacinjeny "e" pred "j")
+_E_Ń	e	mjeńšin, swjedźeń, dźeń, woteńdźeš, škleńcu, woheń, njeńdźe, prózdnjeńcowe - ale: wustajeńcu, kamjeń, Leńka (???)
+_E_Ž	e	tež, knježi, leži, hdźež - ale: kotrež, šćežce(???), Drježdźanach, ćežišća
+_H_$	*	sněh, žiwjenjoběh, wobsah ("h" na koncu slowa so smorny)
+_H_#C	*	njewobhladujemy, zahroda, njehraje, wothłós, hrodźišću, hłós, hdźež, hłownu, hdyž, hladajće ("h" pred konsonantom so smorny)
+Ě_CH_	C	spěchować, běchu, dźěchmy, třěchi, wuspěcha, wšěch, wujěcha, něchtó ("ch" po "e" so zmeni na "C")
+_O_Ł	o	kołowokoło, dospołnosće, rozmołwy, zamołwitosći, powołaja, tołsta, hołbicu ("o" pred "l" je zacinjeny) - ale: delnjołužiskim (hranica slowow)
+_O_W	o	powšitkowne, pruwowanski, hłownaj, jadrowej, towarstwow, institucijow, słowjanskej ("o" pred "w" je zacinjeny) 
+O_W_#C	u	sadowcami, bratrowska, powšitkownych, kralownu, sportowni ("w" po "o" pred konsonantom so zmeni na "u") - ale: druhdy so wuwosta 
+O_Ł_#C	u	zamołwiteho, žołtu, rozmołwjał, namołwja, tołstu ("l" po "o" pred konsonantom so zmeni na "u") - ale: druhdy so wuwosta 
+#C_W_J	*	zwjetša, wobsydstwje, wuměłstwje ("w" po konsonance pred "j" so smorne)
+#V_W_#C	u	přestawce, Žitawčanow, najnowšim, stawje, nawróća, zjawnje ("w" pred konsonantom zmeni so na "u") - ale: předewšěm
+#C_W_#C	u	dito
+$_W_J	*	wjacorych ("wj" na zapocatku slowa so "w" smorny) - ale: wjele, wječorach
+$_W_#C	*	wšak, wsy ("w" na zapocatku slowa pred konsonantom so smorny) - ale: "we wsy" 
+O_W_$	*	Błótow, etapow, wosadow, rjadow ("w" na koncu slowa po "o" so smorny)
+A_W_$	u	staw ("w" na koncu slowa po "a" so zmeni na "u")
+#C_W_$	*	čerw ("w" na koncu slowa po konsonance so smorny)
+O_Ł_$	*	poł, sokoł, šoł ("l" na koncu slowa po "o" so smorny)
+A_Ł_$	u	widźał, jednał, Michał ("l" na koncu slowa po "a" so zmeni na "u")
+I_Ł_$	u	rozsudźił, stworił, přełožił ("l" na koncu slowa po "i" so zmeni na "u")
+$_P_T	*	ptačim (p na zapocatku slowa pred t so smorny)
