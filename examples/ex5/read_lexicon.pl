@@ -188,8 +188,9 @@ elsif ($voice =~ m/de/)
 				# map to phonemes of MBROLA "deX" voice
 		
 				# extra length for vowels
-				if (($outputline =~ m/a/) || ($outputline =~ m/E/) || ($outputline =~ m/e/) || ($outputline =~ m/i/) ||
-					($outputline =~ m/O/) || ($outputline =~ m/o/) || ($outputline =~ m/u/) || ($outputline =~ m/1/))
+				if ((($outputline =~ m/a/) || ($outputline =~ m/E/) || ($outputline =~ m/e/) || ($outputline =~ m/i/) ||
+					($outputline =~ m/O/) || ($outputline =~ m/o/) || ($outputline =~ m/u/) || ($outputline =~ m/1/)) &&
+					(!($outputline =~ m/ji/)))
 				{
 					# remapping
 					$outputline =~ s/o/o:/;
@@ -204,8 +205,9 @@ elsif ($voice =~ m/de/)
 				{
 					$outputline =~ s/w/v/;
 					
+					$outputline =~ s/Q/\?/;
 					
-					if ($outputline =~ m/I/)
+					if ($outputline =~ m/ji/)
 					{
 						$outputline = "; !!!! improvised mapping of 'Ě'!!!!\ni:\t30\nj\t30\nE\t30\n; !!!! improvised mapping of 'Ě'!!!!";
 					}
