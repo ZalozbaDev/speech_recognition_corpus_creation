@@ -9,6 +9,7 @@ input_txts:
     #- "vocabulary.txt"
     #- "adaptation.corp"
     #- "sl.corp"
+    - "adaptation.hsb"
 
 phoneme_inventory:  "phonmap_v3.txt"
 exceptions_file:    "exceptions_v3.txt"
