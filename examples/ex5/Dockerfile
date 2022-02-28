@@ -33,6 +33,10 @@ CMD ["/bin/bash"]
 # read out lexicon
 ## docker run --privileged --mount type=bind,source="$(pwd)"/output,target=/results/ -it speech_recognition_corpus_creation_ex5 /read_lexicon.pl /results/hsb_sampa.lex de6
 
+# alternative run for a smaller lexicon (adaptation)
+## mkdir -p output_small && rm -rf ./output_small/* 
+## docker run --mount type=bind,source="$(pwd)"/output_small,target=/results/ --mount type=bind,source="$(pwd)"/input_small,target=/input/ -it speech_recognition_corpus_creation_ex5 /input/runme.sh
+
 # on windows, assure runme.sh is converted to unix linefeeds, and run a cmdline similar to this one (replace absolute paths):
 ##  winpty docker run --mount type=bind,source="/c/Users/$USER/$PATH_TO_HERE/output",target=/results/ --mount type=bind,source="/c/Users/$USER/$PATH_TO_HERE/input",target=/input/ -it speech_recognition_corpus_creation_ex5
 ## at the prompt:
