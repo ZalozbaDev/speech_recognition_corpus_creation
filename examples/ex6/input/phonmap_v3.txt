@@ -1,0 +1,37 @@
+A	a	V
+B	b	C
+C	ts	C
+Č	tS	C
+Ć	tS	C
+D	d	C
+E	E	V
+Ě	ji	C
+F	f	C
+G	g	C
+H	h	C
+I	i	V
+J	j	C
+K	k	C
+Ł	w	C
+L	l	C
+M	m	C
+N	n	C
+Ń	jn	C
+O	O	V
+Ó	U	V
+P	p	C
+R	r	C
+Ř	S	C
+S	s	C
+Š	S	C
+T	t	C
+U	u	V
+W	w	C
+Y	1	V
+Z	z	C
+Ž	Z	C
+CH	x	C
+DŹ	dZ	C
+V	f	C
+X	k s	C
+Q	k w	C

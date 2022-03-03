@@ -12,6 +12,8 @@
 
 - ex5: Uses most recent scripts, MIT licensed corpora and most recent phoneme map and G2P rules. Recommended! Processing is fast.
 
+- ex6: Development version for smart lamp lexicon.
+
 ### Hints
 
 If sentence selection is not needed, turn it off to get the normalized corpus, the vocabulary and the lexicon only. Change
