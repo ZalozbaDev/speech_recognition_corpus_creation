@@ -33,6 +33,8 @@ names:
     - "triphones"
 scoring_type: 1 # 1, 2 or 3; choose 2 for negative log-prob weights, 3 for sentence weights
 
+# Used in "uasr" mode only, if you want to use an acoustic model for a different language
+# (e.g. a German model for Upper Sorbian). Ignored in "sampa" mode.
 uasr_map: 
     'w': 'U v'
     'ts': 't s'
@@ -50,6 +52,7 @@ uasr_map:
     'o': 'o:'
     'y': 'y:'
     
+# Mandatory specification of digraphs. Required for the parser to work correctly!
 digraphs:
     'C_H': 'CH'
     'D_Ź': 'DŹ'
