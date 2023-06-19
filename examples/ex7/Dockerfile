@@ -11,8 +11,10 @@ RUN apt update
 
 RUN apt install -y python3 python3-numpy python3-matplotlib python3-yaml
 
-# RUN mkdir -p /results/
+RUN mkdir -p /output/
 RUN mkdir -p /input/
+
+COPY input/* /input/
 
 # tools for inspecting container
 RUN apt install -y procps nano
@@ -22,7 +24,6 @@ CMD ["/bin/bash"]
 
 # how to use this container to run the tool:
 ## mkdir -p output && rm -rf ./output/* 
-## docker run --mount type=bind,source="$(pwd)"/output,target=/results/ --mount type=bind,source="$(pwd)"/input,target=/input/ -it speech_recognition_corpus_creation_ex7 /input/runme.sh
+## docker run --mount type=bind,source="$(pwd)/output",target=/output/ -it speech_recognition_corpus_creation_ex7 /input/runme.sh
 
-## docker run --mount type=bind,source="$(pwd)/",target=/input/ -it speech_recognition_corpus_creation_ex7 /input/runme.sh
 
