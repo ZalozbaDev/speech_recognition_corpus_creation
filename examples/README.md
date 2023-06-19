@@ -14,6 +14,8 @@
 
 - ex6: Development version for smart lamp lexicon.
 
+- ex7: Development of improved generation script.
+
 ### Hints
 
 If sentence selection is not needed, turn it off to get the normalized corpus, the vocabulary and the lexicon only. Change
