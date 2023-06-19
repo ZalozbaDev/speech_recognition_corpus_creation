@@ -15,6 +15,7 @@ $voice = "cz2";
 if ($num_args > 1) {
 	$voice = $ARGV[1];	
 }
+$approvedreferences = "approved_references.lex";
 
 printf "Lexicon = %s, voice = %s.\n", $lexicon, $voice;
 
@@ -42,6 +43,10 @@ while (<INHANDLE>)
 close INHANDLE;
 
 printf "Read %d lines from lexicon.\n", $totallines;
+
+@reftextual = ();
+@refphonetical = ();
+$reflines = readReferences();
 
 if ($voice eq "cz2")
 {
@@ -248,16 +253,37 @@ elsif ($voice =~ m/de/)
 			while (defined($dummy=ReadKey(-1))) {};
 			ReadMode('Normal');
 			
-			if ($key =~ m/\n/) 
+			# A --> good realization, add to reference, go to next word
+			# R --> bad realization, go to next word
+			# ENTER --> play alternatives
+			# all other keys behave like ENTER
+			
+			
+			if ($key =~ m/a/) 
 			{
+				print "Adding $textual[$myline] to known-good.\n";
+				
+				for ($newgood = $minentry; $newgood <= $maxentry; $newgood++)
+				{
+					system("echo \"$textual[$newgood]	$phonetical[$newgood]\" >> $approvedreferences");
+				}
+				
 				$newword = 1;	
 			}
 			else
 			{
-				$myline++;	
-				if ($myline > $maxentry)
+				if ($key =~ m/r/)
 				{
-					$myline = $minentry;	
+					print "Skipping $textual[$myline] as it's bad.\n";
+					$newword = 1;	
+				}
+				else
+				{
+					$myline++;	
+					if ($myline > $maxentry)
+					{
+						$myline = $minentry;	
+					}
 				}
 			}
 			
@@ -265,6 +291,10 @@ elsif ($voice =~ m/de/)
 		}
 		
 		print "-----------------------------------------------------\n\n";
+		
+		@reftextual = ();
+		@refphonetical = ();
+		$reflines = readReferences();
 	}
 }
 else
@@ -308,4 +338,32 @@ sub findAlternatives() {
 	$maximum = $position;
 	
 	return ($minimum, $maximum);
+}
+
+# read the file with known-good entries 
+sub readReferences() {
+	
+	system("mv $approvedreferences $approvedreferences.tmp.txt && cat $approvedreferences.tmp.txt | sort > $approvedreferences"); 
+	
+	open(INHANDLE, "$approvedreferences") or return 0;
+
+	$tmplines = 0;
+
+	while (<INHANDLE>)
+	{
+		$line = $_;
+		chomp($line);
+		($text,$phones) = $line =~ m/(.+)\t(.+)/;
+	
+		# printf "#%s#\t&%s&\n", $text, $phones;
+	
+		push @textual, $text;
+		push @phonetical, $phones;
+	
+		$tmplines++;
+	}
+
+	close INHANDLE;
+	
+	return $tmplines;
 }
