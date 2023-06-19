@@ -44,10 +44,6 @@ close INHANDLE;
 
 printf "Read %d lines from lexicon.\n", $totallines;
 
-@reftextual = ();
-@refphonetical = ();
-$reflines = readReferences();
-
 if ($voice eq "cz2")
 {
 	while (1)
@@ -291,10 +287,6 @@ elsif ($voice =~ m/de/)
 		}
 		
 		print "-----------------------------------------------------\n\n";
-		
-		@reftextual = ();
-		@refphonetical = ();
-		$reflines = readReferences();
 	}
 }
 else
@@ -341,13 +333,17 @@ sub findAlternatives() {
 }
 
 # read the file with known-good entries 
-sub readReferences() {
+sub compareReferences() {
 	
-	system("mv $approvedreferences $approvedreferences.tmp.txt && cat $approvedreferences.tmp.txt | sort > $approvedreferences"); 
+	$minpos = $_[0];
+	$maxpos = $_[1];
 	
+	# system("mv $approvedreferences $approvedreferences.tmp.txt && cat $approvedreferences.tmp.txt | sort > $approvedreferences"); 
+	
+	# at first just count the references
 	open(INHANDLE, "$approvedreferences") or return 0;
 
-	$tmplines = 0;
+	$refoccur = 0;
 
 	while (<INHANDLE>)
 	{
@@ -357,13 +353,30 @@ sub readReferences() {
 	
 		# printf "#%s#\t&%s&\n", $text, $phones;
 	
-		push @textual, $text;
-		push @phonetical, $phones;
+		# push @reftextual, $text;
+		# push @refphonetical, $phones;
 	
-		$tmplines++;
+		if ($textual[$minpos] eq $text)
+		{
+			$refoccur++;
+		}
 	}
 
 	close INHANDLE;
+	
+	if ($refoccur == 0)
+	{
+		# not yet in dictionary
+		return 0;
+	}
+	
+	if ($refoccur != ($maxpos - $minpos + 1))
+	{
+		# different approved variant
+		return -1;
+	}
+	
+	
 	
 	return $tmplines;
 }
