@@ -38,3 +38,23 @@ DELNJOŁUŽISKIM	d E l n j O w u Z i s k i m
 DELNJOŁUŽISKIM	d E l n j o w u Z i s k i m
 MĚJACH	m ji j a x
 MĚJACH	m e j a x
+NAJLUBŠEJ	n a j l u p S e j
+BĚCHU	b ji C u
+POJĚDŹ	p O j ji tS
+POBĚŽEĆ	p O b ji Z E tS
+POBĚŽEĆ	p O b e Z E tS
+BYCHMY	b 1 x m 1
+BYCHMY	b 1 x m U
+NAJRJEŃŠI	n a j r j E jn S i
+NAJRJEŃŠI	n a j r e n S i
+ALE	a l E
+ALE	Q a l E
+KRALOWNU	k r a l O w n u
+KRALOWNU	k r a l o w n u
+SKEDŹBLIWJE	s k e dZ b l i u j E
+SKEDŹBLIWJE	s k e dZ b l i u E
+RJEĆAZK	r j E tS a s k
+RJEĆAZK	r E tS a s k
+PŘEHLADKA	p S E l a t k a
+MUDROSĆ	m u d r O s tS
+MUDROSĆ	m u d r O S tS
