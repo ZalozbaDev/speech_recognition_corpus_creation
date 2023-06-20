@@ -387,6 +387,9 @@ sub compareReferences() {
 	if ($refoccur != ($maxpos - $minpos + 1))
 	{
 		# different number of approved variants --> no match
+		
+		printf "Found %d variants for word %s but expected %d!\n", $refoccur, $textual[$minpos], ($maxpos - $minpos + 1);
+		
 		return -1;
 	}
 	
@@ -408,7 +411,11 @@ sub compareReferences() {
 	
 			if ($textual[$recheck] eq $text)
 			{
-				$foundentry++;
+				if ($phonetical[$recheck] eq $phones)
+				{
+					printf "'%s': '%s' == '%s'.\n", $textual[$recheck], $phonetical[$recheck], $phones;
+					$foundentry++;
+				}
 			}
 		}
 		
@@ -420,6 +427,8 @@ sub compareReferences() {
 	{
 		return 1;
 	}
+	
+	printf "For word %s expect %d matches but found %d!\n",  $textual[$minpos], ($maxpos - $minpos + 1), $foundentry;
 	
 	return -1;
 }
