@@ -55,7 +55,7 @@ if ($voice eq "cz2")
 		printf "Processing word %s:\n", $textual[$myline];
 		
 		findAlternatives($textual[$myline], $myline);
-						
+		
 		@phones = split(" ", $phonetical[$myline]);
 		
 		# print join (", ", @phones);
@@ -162,131 +162,145 @@ elsif ($voice =~ m/de/)
 		
 		$alternatives = $maxentry - $minentry;
 		
-		$newword = 0;
-		while ($newword == 0)
+		$refresult = compareReferences($minentry, $maxentry);
+		
+		if ($refresult == 1)
 		{
-			printf "Processing word %s:\n", $textual[$myline];
-		
-			if ($alternatives > 0) {
-				printf "Phonemes(%d/%d): %s\n", $myline - $minentry + 1, $maxentry - $minentry + 1, $phonetical[$myline];
-			} else {
-				printf "Phonemes: %s\n", $phonetical[$myline];
-			}
-			
-			@phones = split(" ", $phonetical[$myline]);
-			
-			# print join (", ", @phones);
-			
-			system("rm -f mbrola_input.pho mbrola_output.wav");
-			
-			open(OUTHANDLE, "> mbrola_input.pho") or die ("Cannot open output file for writing!\n");
-			
-			for ($index = 0; $index < scalar(@phones); $index++)
+			print "$textual[$myline] matches approved pronunications --> SKIPPED!\n";
+		}
+		else
+		{
+			if ($refresult == -1)
 			{
-				# printf "Processing %s.\n", $phones[$index];
-				$outputline = $phones[$index];
-				
-				# map to phonemes of MBROLA "deX" voice
+				print "$textual[$myline] ERROR, different versions approved --> NEEDS ACTION!\n";	
+			}
 		
-				# extra length for vowels
-				if (($outputline =~ m/a/) || ($outputline =~ m/E/) || ($outputline =~ m/e/) || ($outputline =~ m/i/) ||
-					($outputline =~ m/O/) || ($outputline =~ m/o/) || ($outputline =~ m/u/) || ($outputline =~ m/1/))
-				{
-					# remapping
-					$outputline =~ s/o/o:/;
-					$outputline =~ s/i/I/;
-					$outputline =~ s/e/e:/;
-					$outputline =~ s/u/U/;
-					$outputline =~ s/1/Y/;
-					
-					$outputline = $outputline . "\t200";	
+			$newword = 0;
+			while ($newword == 0)
+			{
+				printf "Processing word %s:\n", $textual[$myline];
+			
+				if ($alternatives > 0) {
+					printf "Phonemes(%d/%d): %s\n", $myline - $minentry + 1, $maxentry - $minentry + 1, $phonetical[$myline];
+				} else {
+					printf "Phonemes: %s\n", $phonetical[$myline];
 				}
-				else
+				
+				@phones = split(" ", $phonetical[$myline]);
+				
+				# print join (", ", @phones);
+				
+				system("rm -f mbrola_input.pho mbrola_output.wav");
+				
+				open(OUTHANDLE, "> mbrola_input.pho") or die ("Cannot open output file for writing!\n");
+				
+				for ($index = 0; $index < scalar(@phones); $index++)
 				{
-					$outputline =~ s/w/v/;
+					# printf "Processing %s.\n", $phones[$index];
+					$outputline = $phones[$index];
 					
-					
-					if ($outputline =~ m/I/)
+					# map to phonemes of MBROLA "deX" voice
+			
+					# extra length for vowels
+					if (($outputline =~ m/a/) || ($outputline =~ m/E/) || ($outputline =~ m/e/) || ($outputline =~ m/i/) ||
+						($outputline =~ m/O/) || ($outputline =~ m/o/) || ($outputline =~ m/u/) || ($outputline =~ m/1/))
 					{
-						$outputline = "; !!!! improvised mapping of 'Ě'!!!!\ni:\t30\nj\t30\nE\t30\n; !!!! improvised mapping of 'Ě'!!!!";
-					}
-					elsif ($outputline =~ m/U/)
-					{
-						$outputline = "U\t50";
-					}
-					#elsif ($outputline =~ m/r/)
-					#{
-					#	$outputline = "6\t100";
-					#}
-					elsif ($outputline =~ m/jn/)
-					{
-						$outputline = "; !!!!improvised mapping of 'ń'!!!!\nj\t50\nn\t50\n; !!!!improvised mapping of 'ń'!!!!";
-					}
-					elsif ($outputline =~ m/dZ/)
-					{
-						# $outputline = "; !!!!improvised mapping of 'dź'!!!!\nd\t50\nZ\t50\n; !!!!improvised mapping of 'dź'!!!!";
-						$outputline = "d\t50\nZ\t50";
+						# remapping
+						$outputline =~ s/o/o:/;
+						$outputline =~ s/i/I/;
+						$outputline =~ s/e/e:/;
+						$outputline =~ s/u/U/;
+						$outputline =~ s/1/Y/;
+						
+						$outputline = $outputline . "\t200";	
 					}
 					else
 					{
-						$outputline = $outputline . "\t100";	
+						$outputline =~ s/w/v/;
+						
+						
+						if ($outputline =~ m/I/)
+						{
+							$outputline = "; !!!! improvised mapping of 'Ě'!!!!\ni:\t30\nj\t30\nE\t30\n; !!!! improvised mapping of 'Ě'!!!!";
+						}
+						elsif ($outputline =~ m/U/)
+						{
+							$outputline = "U\t50";
+						}
+						#elsif ($outputline =~ m/r/)
+						#{
+						#	$outputline = "6\t100";
+						#}
+						elsif ($outputline =~ m/jn/)
+						{
+							$outputline = "; !!!!improvised mapping of 'ń'!!!!\nj\t50\nn\t50\n; !!!!improvised mapping of 'ń'!!!!";
+						}
+						elsif ($outputline =~ m/dZ/)
+						{
+							# $outputline = "; !!!!improvised mapping of 'dź'!!!!\nd\t50\nZ\t50\n; !!!!improvised mapping of 'dź'!!!!";
+							$outputline = "d\t50\nZ\t50";
+						}
+						else
+						{
+							$outputline = $outputline . "\t100";	
+						}
 					}
+					
+					printf "%s\n", $outputline;
+					print OUTHANDLE $outputline . "\n";
 				}
 				
-				printf "%s\n", $outputline;
-				print OUTHANDLE $outputline . "\n";
-			}
+				close OUTHANDLE;
 			
-			close OUTHANDLE;
+				system("mbrola /usr/share/mbrola/$voice/$voice mbrola_input.pho mbrola_output.wav");
+			
+				system("aplay -q mbrola_output.wav");
 		
-			system("mbrola /usr/share/mbrola/$voice/$voice mbrola_input.pho mbrola_output.wav");
-		
-			system("aplay -q mbrola_output.wav");
-	
-			print "Press 'Enter' for new word, any other key for repeat/alternative.\n";
-			ReadMode('cbreak');
-			$key = ReadKey(0);
-			while (defined($dummy=ReadKey(-1))) {};
-			ReadMode('Normal');
-			
-			# A --> good realization, add to reference, go to next word
-			# R --> bad realization, go to next word
-			# ENTER --> play alternatives
-			# all other keys behave like ENTER
-			
-			
-			if ($key =~ m/a/) 
-			{
-				print "Adding $textual[$myline] to known-good.\n";
+				print "'a' to accept, 'r' to reject, any other key to repeat/alternative.\n";
+				ReadMode('cbreak');
+				$key = ReadKey(0);
+				while (defined($dummy=ReadKey(-1))) {};
+				ReadMode('Normal');
 				
-				for ($newgood = $minentry; $newgood <= $maxentry; $newgood++)
-				{
-					system("echo \"$textual[$newgood]	$phonetical[$newgood]\" >> $approvedreferences");
-				}
+				# A --> good realization, add to reference, go to next word
+				# R --> bad realization, go to next word
+				# ENTER --> play alternatives
+				# all other keys behave like ENTER
 				
-				$newword = 1;	
-			}
-			else
-			{
-				if ($key =~ m/r/)
+				
+				if ($key =~ m/a/) 
 				{
-					print "Skipping $textual[$myline] as it's bad.\n";
+					print "Adding $textual[$myline] to known-good.\n";
+					
+					for ($newgood = $minentry; $newgood <= $maxentry; $newgood++)
+					{
+						system("echo \"$textual[$newgood]	$phonetical[$newgood]\" >> $approvedreferences");
+					}
+					
 					$newword = 1;	
 				}
 				else
 				{
-					$myline++;	
-					if ($myline > $maxentry)
+					if ($key =~ m/r/)
 					{
-						$myline = $minentry;	
+						print "Skipping $textual[$myline] as it's bad.\n";
+						$newword = 1;	
+					}
+					else
+					{
+						$myline++;	
+						if ($myline > $maxentry)
+						{
+							$myline = $minentry;	
+						}
 					}
 				}
+				
+				print "\n";
 			}
 			
-			print "\n";
+			print "-----------------------------------------------------\n\n";
 		}
-		
-		print "-----------------------------------------------------\n\n";
 	}
 }
 else
@@ -372,11 +386,40 @@ sub compareReferences() {
 	
 	if ($refoccur != ($maxpos - $minpos + 1))
 	{
-		# different approved variant
+		# different number of approved variants --> no match
 		return -1;
 	}
 	
+	$foundentry = 0;
 	
+	for ($recheck = $minpos; $recheck <= $maxpos; $recheck++)
+	{
+		open(INHANDLE, "$approvedreferences") or die ("Cannot open reference file!\n");
+		
+		$refoccur = 0;
+
+		while (<INHANDLE>)
+		{
+			$line = $_;
+			chomp($line);
+			($text,$phones) = $line =~ m/(.+)\t(.+)/;
 	
-	return $tmplines;
+			# printf "#%s#\t&%s&\n", $text, $phones;
+	
+			if ($textual[$recheck] eq $text)
+			{
+				$foundentry++;
+			}
+		}
+		
+		close INHANDLE;
+	}
+	
+	# all variants found in dictionary
+	if ($foundentry == ($maxpos - $minpos + 1))
+	{
+		return 1;
+	}
+	
+	return -1;
 }
