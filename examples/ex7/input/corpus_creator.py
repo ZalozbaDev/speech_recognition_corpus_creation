@@ -131,6 +131,8 @@ class CorpusDataset():
         ideal_stats
         selected_sentence_ids
         split_ids
+        explog
+        usar_lexicon
     """
 
     def __init__(self, configfile):
@@ -148,8 +150,8 @@ class CorpusDataset():
         self.ideal_stats = None
         self.selected_sentence_ids = None
         self.split_ids = None
-        #self.lexicon = None
-        self.uasr_lexicon = None
+        self.explog = None
+        #self.uasr_lexicon = None
 
     def write_corpus(self):
         """
@@ -389,6 +391,7 @@ class CorpusDataset():
         projectname=self.cfg.cfile.split('.')[0]
         mode=self.cfg.vars['mode']
         lexicon=self.lexicon
+        expl=self.explog
         vowels=self.vowels
         database=self.cfg.vars['database']
 
@@ -398,9 +401,18 @@ class CorpusDataset():
             phmodels = set()
             for key in lexicon.keys():
                 for pvar in lexicon[key]:
+                    pvar = [value for value in pvar if value != "*"]
                     lex_file.write(key + '\t' + ' '.join(pvar).replace('+','') + '\n')
                     phmodels.update(pvar)
             lex_file.close()
+
+        with open(os.path.join(os.getcwd(), 'uasr_configurations', 'lexicon', projectname.lower() + '_' + mode + '.dbg'), "w",
+                        encoding='utf-8') as dbg_file:
+            for key in lexicon.keys():
+                for pvar in lexicon[key]:
+                    patt = expl.get(key,['EXTERNAL'])
+                    dbg_file.write(key + '\t(' + ' '.join(pvar).replace('+','') + ')\t\t(' + ' '.join(patt).replace('+','') +')\n')
+            dbg_file.close()
 
         with open(os.path.join(os.getcwd(), 'uasr_configurations', 'lexicon', projectname.lower() + '_' + mode + '.klex'), "w",
                         encoding='utf-8') as klex_file:
@@ -408,6 +420,7 @@ class CorpusDataset():
             klex_file.write('<unk>' + '\t' + '<usb>' + '\n')
             for key in lexicon.keys():
                 for pvar in lexicon[key]:
+                    pvar = [value for value in pvar if value != "*"]
                     klex_file.write(key + '\t. ' + ' '.join(pvar) + ' .\n')
                     phmodels.update(pvar)
             klex_file.close()
@@ -417,6 +430,7 @@ class CorpusDataset():
             phmodels = set()
             for key in lexicon.keys():
                 for pvar in lexicon[key]:
+                    pvar = [value for value in pvar if value != "*"]
                     ulex_file.write(key + '\t' + '(.|#|)' + ''.join(pvar) + '(.|#|)' + '\n')
                     phmodels.update(pvar)
             ulex_file.close()
@@ -428,6 +442,7 @@ class CorpusDataset():
             fagrm_file.write('LEX: ' + '<PAU>' + '\t' + '.' + '\n')
             for key in lexicon.keys():
                 for pvar in lexicon[key]:
+                    pvar = [value for value in pvar if value != "*"]
                     fagrm_file.write('LEX: ' + key + '\t' + '(.|#|)' + ''.join(pvar) + '(.|#|)' + '\n')
 
             fagrm_file.write('\n')
@@ -788,12 +803,9 @@ class CorpusDataset():
             G2P for a given word and phoneme map
             """
 
-            phns = []
-            #uphns = []
-
             canonical = []
-            mandatory = []
             alternatives= []
+            pattern = []
 
             if self.cfg.vars['wclass_delimiters'][0] in word and self.cfg.vars['wclass_delimiters'][1] in word:
                 return [word,word], ''
@@ -851,24 +863,29 @@ class CorpusDataset():
 
                     phn = []
 
-                    canonical.extend(phmap[grapheme][0].split(' '))
-                    if len(excp) == 1:
+                    #canonical.extend(phmap[grapheme][0].split(' '))
+                    if len(excp) > 0:
                         #if excp[0][0] != '*':
                         phn = excp[0][0].split(' ')
                         if excp[0][1][0] == 'M':
-                            mandatory.extend(phn)
-                            alternatives.extend(phmap[grapheme][0].split(' '))
-                        elif excp[0][1][0] == 'A':
-                            mandatory.extend(phmap[grapheme][0].split(' '))
+                            canonical.extend(phn)
+                            #alternatives.extend(phmap[grapheme][0].split(' '))
                             alternatives.extend(phn)
+                            pattern.extend('M')
+                        elif excp[0][1][0] == 'A':
+                            canonical.extend(phmap[grapheme][0].split(' '))
+                            alternatives.extend(phn)
+                            pattern.extend('A')
                         else:
-                            mandatory.extend(phmap[grapheme][0].split(' '))
+                            canonical.extend(phmap[grapheme][0].split(' '))
                             alternatives.extend(phmap[grapheme][0].split(' '))
-                        if phmap[grapheme][1] == 'V':
+                            pattern.extend('?')
+                        if phmap[grapheme][1] == 'V' and '*' not in phn:
                             self.vowels.extend(phn)
                     else:
-                        mandatory.extend(phmap[grapheme][0].split(' '))
+                        canonical.extend(phmap[grapheme][0].split(' '))
                         alternatives.extend(phmap[grapheme][0].split(' '))
+                        pattern.extend('C')
 
                     #if self.cfg.vars['mode'] == 'uasr':
                     #    map_temp = []
@@ -881,29 +898,31 @@ class CorpusDataset():
                     #phns.extend(phn)
                     #prio.append(pri)
 
-                can=[]
-                p_phns=[]
-                for idx, chr in enumerate(canonical):
-                    if canonical[idx]!=mandatory[idx]:
-                        can.append(mandatory[idx])
-                        p_phns.append(mandatory[idx])
-                    else:
-                        can.append(canonical[idx])
-                        if alternatives[idx]!=canonical[idx]:
-                            p_phns.append(alternatives[idx])
-                        else:
-                            p_phns.append(canonical[idx])
+                #can=[]
+                #p_phns=[]
+
+                #for idx, _ in enumerate(canonical):
+                #    if canonical[idx]!=mandatory[idx]:
+                #        can.append(mandatory[idx])
+                #        p_phns.append(mandatory[idx])
+                #    else:
+                #        can.append(canonical[idx])
+                #        if alternatives[idx]!=canonical[idx]:
+                #            p_phns.append(alternatives[idx])
+                #        else:
+                #            p_phns.append(canonical[idx])
 
                 #can = [key for key, _ in groupby(canonical)]
                 #p_phns = [key for key, _ in groupby(phns)]
                 #up_uphns = [key for key, _ in groupby(uphns)]
 
-                if can!=p_phns:
-                    p_phns = [value for value in p_phns if value != "*"]
-                    can = [value for value in can if value != "*"]
-                    return [can, p_phns]#, prio
-                can = [value for value in can if value != "*"]
-                return [can]#, prio
+                #can = [value for value in canonical if value != "*"]
+                can = canonical
+                if sorted(canonical)!=sorted(alternatives):
+                    #alt = [value for value in alternatives if value != "*"]
+                    alt = alternatives
+                    return [can, alt], pattern
+                return [can,], pattern
             else:
                 return word.strip(), ''
 
@@ -911,6 +930,7 @@ class CorpusDataset():
         phoneme_maps=self.phonemes
 
         lex = {}
+        expl= {}
         #ulex = self.uasr_lexicon
         lvoc = len(vocab)+len(self.lexicon)
         cnt=len(self.lexicon)
@@ -921,9 +941,10 @@ class CorpusDataset():
                 #cnt+=1
                #print_progress_bar(cnt+1, lvoc, prefix='Create Lexicon:', suffix='Complete', length=50)
                 #continue
-                pron = _phonemize(vcb, phoneme_maps)
+                pron, patt = _phonemize(vcb, phoneme_maps)
                 if pron!='':# and upron!='':
                     lex[vcb] = pron
+                    expl[vcb] = patt
                     #print(prio)
                 #ulex[vcb] = upron
                 cnt+=1
@@ -936,6 +957,7 @@ class CorpusDataset():
 
         print('Lexicon completed.')
         self.lexicon = {**self.lexicon, **lex}
+        self.explog = expl
 
     def create_prompts(self):
         """

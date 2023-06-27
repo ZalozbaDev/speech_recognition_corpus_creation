@@ -1,6 +1,7 @@
 # Configuration file
 
 input_txts:
+    #- "test_small.txt"
     - "test.txt"
 
 phoneme_inventory:  "phonmap_v3.txt"
