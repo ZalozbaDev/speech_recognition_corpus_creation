@@ -42,7 +42,7 @@ _H_#C	*	MANDATORY	njewobhladujemy, zahroda, njehraje, wothłós, hrodźišću, h
 Ě_CH_	C	MANDATORY	spěchować, běchu, dźěchmy, třěchi, wuspěcha, wšěch, wujěcha, něchtó ("ch" po "ě" so změni na "C")
 _O_Ł	o	ALTERNATIVE	kołowokoło, dospołnosće, rozmołwy, zamołwitosći, powołaja, tołsta, hołbicu ("o" před "ł" je začinjeny) - ale: delnjołužiskim (hranica słowow)
 _O_W	o	ALTERNATIVE	powšitkowne, pruwowanski, hłownaj, jadrowej, towarstwow, institucijow, słowjanskej ("o" před "w" je začinjeny)
-O_W_#C	u	???			sadowcami, bratrowska, powšitkownych, kralownu, sportowni ("w" po "o" před konsonantom so změni na "u") - ale: druhdy so wuwosta
+O_W_#C	(u|*)	ALTERNATIVE			sadowcami, bratrowska, powšitkownych, kralownu, sportowni ("w" po "o" před konsonantom so změni na "u") - ale: druhdy so wuwosta
 O_Ł_#C	u	???			zamołwiteho, žołtu, rozmołwjał, namołwja, tołstu ("ł" po "o" před konsonantom so změni na "u") - ale: druhdy so wuwosta
 #C_W_J	*	ERROR		zwjetša, wobsydstwje, wuměłstwje ("w" po konsonanće před "j" so šmórne)
 #V_W_#C	u	MANDATORY	přestawce, Žitawčanow, najnowšim, stawje, nawróća, zjawnje ("w" před konsonantom změni so na "u") - ale: předewšěm

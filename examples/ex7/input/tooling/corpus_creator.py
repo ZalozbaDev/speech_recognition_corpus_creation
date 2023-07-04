@@ -40,8 +40,8 @@ import random as rn
 import re
 import shutil
 from datetime import datetime
-from itertools import groupby
 import uuid
+import itertools
 import yaml
 import numpy as np
 
@@ -84,7 +84,7 @@ class Configuration():
             'output_dir' : 'corpus',
             'database' : 'db-asr',
             'wclass_delimiters'   : ['{','}'],
-            'subword_delimiters'   : ['#'],
+            'subword_delimiter'   : '#',
             }
         self.vars = self.read_configuration()
 
@@ -132,7 +132,6 @@ class CorpusDataset():
         selected_sentence_ids
         split_ids
         explog
-        usar_lexicon
     """
 
     def __init__(self, configfile):
@@ -151,7 +150,6 @@ class CorpusDataset():
         self.selected_sentence_ids = None
         self.split_ids = None
         self.explog = None
-        #self.uasr_lexicon = None
 
     def write_corpus(self):
         """
@@ -374,6 +372,24 @@ class CorpusDataset():
         """
         Write UASR project configuration files
         """
+        def generate_combinations(input_string):
+            # Find all alternatives within parentheses
+            alternatives = [a[1:-1].replace('_',' ').split('|') for a in input_string if '(' in a and ')' in a ]
+            indices = [i for i, a in enumerate(input_string) if '(' in a and ')' in a ]
+
+            if len(alternatives)==0:
+                return [' '.join(input_string)]
+
+            # Generate all combinations using itertools.product
+            combinations = []
+            for pattern in itertools.product(*alternatives):
+                for index, value in zip(indices, pattern):
+                        #if value=='*':
+                        #    value=''
+                    input_string[index] = value
+
+                combinations.append(' '.join(input_string))
+            return combinations
 
         if os.path.exists('uasr_configurations'):
             if os.path.exists('uasr_configurations/info'):
@@ -395,46 +411,27 @@ class CorpusDataset():
         vowels=self.vowels
         database=self.cfg.vars['database']
 
-        with open(os.path.join(os.getcwd(), 'uasr_configurations', 'lexicon', projectname.lower() + '_' + mode + '.lex'), "w",
-                        encoding='utf-8') as lex_file:
-            lex_file.write('<unk>' + '\t' + '#' + '\n')
-            phmodels = set()
-            for key in lexicon.keys():
-                for pvar in lexicon[key]:
-                    pvar = [value for value in pvar if value != "*"]
-                    lex_file.write(key + '\t' + ' '.join(pvar).replace('+','') + '\n')
-                    phmodels.update(pvar)
-            lex_file.close()
-
+        # Write lexicon debug file
         with open(os.path.join(os.getcwd(), 'uasr_configurations', 'lexicon', projectname.lower() + '_' + mode + '.dbg'), "w",
                         encoding='utf-8') as dbg_file:
             for key in lexicon.keys():
                 for pvar in lexicon[key]:
-                    patt = expl.get(key,['EXTERNAL'])
-                    dbg_file.write(key + '\t(' + ' '.join(pvar).replace('+','') + ')\t\t(' + ' '.join(patt).replace('+','') +')\n')
+                    patt = ' '.join(expl.get(key,['EXTERNAL'])).replace('+','')
+                    out = ' '.join(pvar).replace(self.cfg.vars['subword_delimiter'],'')
+                    dbg_file.write(key + '\t(' + out + ')\t\t(' + patt +')\n')
             dbg_file.close()
 
-        with open(os.path.join(os.getcwd(), 'uasr_configurations', 'lexicon', projectname.lower() + '_' + mode + '.klex'), "w",
-                        encoding='utf-8') as klex_file:
-            phmodels = set()
-            klex_file.write('<unk>' + '\t' + '<usb>' + '\n')
-            for key in lexicon.keys():
-                for pvar in lexicon[key]:
-                    pvar = [value for value in pvar if value != "*"]
-                    klex_file.write(key + '\t. ' + ' '.join(pvar) + ' .\n')
-                    phmodels.update(pvar)
-            klex_file.close()
-
+        # Write UASR lexicon file
         with open(os.path.join(os.getcwd(), 'uasr_configurations', 'lexicon', projectname.lower() + '_' + mode + '.ulex'), "w",
                         encoding='utf-8') as ulex_file:
-            phmodels = set()
             for key in lexicon.keys():
                 for pvar in lexicon[key]:
-                    pvar = [value for value in pvar if value != "*"]
-                    ulex_file.write(key + '\t' + '(.|#|)' + ''.join(pvar) + '(.|#|)' + '\n')
-                    phmodels.update(pvar)
+                    pvar=''.join(pvar)
+                    pvar = re.sub(r'[^\w\s\d\|\(\)]', '', pvar).replace('_','')
+                    ulex_file.write(key + '\t' + '(.|#|)' + pvar + '(.|#|)' + '\n')
             ulex_file.close()
 
+        # Write UASR grammar file
         with open(os.path.join(os.getcwd(), 'uasr_configurations','grammar', projectname.lower() +'.grm'), "w",
                   encoding='utf-8') as fagrm_file:
 
@@ -442,8 +439,9 @@ class CorpusDataset():
             fagrm_file.write('LEX: ' + '<PAU>' + '\t' + '.' + '\n')
             for key in lexicon.keys():
                 for pvar in lexicon[key]:
-                    pvar = [value for value in pvar if value != "*"]
-                    fagrm_file.write('LEX: ' + key + '\t' + '(.|#|)' + ''.join(pvar) + '(.|#|)' + '\n')
+                    pvar=''.join(pvar)
+                    pvar = re.sub(r'[^\w\s\d\|\(\)]', '', pvar).replace('_','')
+                    fagrm_file.write('LEX: ' + key + '\t' + '(.|#|)' + pvar + '(.|#|)' + '\n')
 
             fagrm_file.write('\n')
             fagrm_file.write('GRM: ' + '(S) <PAU>: (S)' + '\n')
@@ -453,6 +451,29 @@ class CorpusDataset():
             fagrm_file.write('GRM: ' + '(S) (F)')
             fagrm_file.close()
 
+        # Write sampa and kaldi lexicons
+        with open(os.path.join(os.getcwd(), 'uasr_configurations', 'lexicon', projectname.lower() + '_' + mode + '.lex'), "w",
+                        encoding='utf-8') as lex_file, open(os.path.join(os.getcwd(), 'uasr_configurations', 'lexicon', projectname.lower() + '_' + mode + '.klex'), "w",
+                        encoding='utf-8') as klex_file:
+
+            lex_file.write('<unk>' + '\t' + '#' + '\n')
+            klex_file.write('<unk>' + '\t' + '<usb>' + '\n')
+            phmodels = set()
+            for key in lexicon.keys():
+                for pvar in lexicon[key]:
+                    for comb in generate_combinations(pvar):
+                        out = re.sub(r'[^\w\s\d]', '', comb)
+                        out = re.sub(' +', ' ', out).strip()
+                        if out in ('',' '):
+                            print(f'No pronounciation for word: {key}')
+                            continue
+                        lex_file.write(key + '\t' + out + '\n')
+                        klex_file.write(key + '\t. ' + out + ' .\n')
+                        phmodels.update(out)
+            klex_file.close()
+            lex_file.close()
+
+        # Write phoneme classes seen in the corpus
         with open(os.path.join(os.getcwd(), 'uasr_configurations','info', 'classes.txt'), "w", encoding='utf-8') as phm_file:
             #labmap_file = open(os.path.join(os.getcwd(), 'uasr_configurations','info', 'labmap.txt'), "w", encoding='utf-8')
             phm_file.write(CLASS_HEADER)
@@ -461,15 +482,20 @@ class CorpusDataset():
                     ver = '1.0'
                 else:
                     ver = '0.0'
+                if clp in ('',' '):
+                    print('Empty class')
+                    continue
                 phm_file.write(' '+clp+'\t'+'3'+'\t'+ver+'\t'+'[spe]\n')
                 #labmap_file.write(cl+'\t'+cl)
             phm_file.close()
             #labmap_file.close()
 
+        # Write default UASR ITP script
         with open(os.path.join(os.getcwd(), 'uasr_configurations', 'info', 'default.itp'), "w", encoding='utf-8') as defitp_file:
             defitp_file.write(DEFAULT_ITP)
             defitp_file.close()
 
+        # Write default UASR configuration file
         with open(os.path.join(os.getcwd(), 'uasr_configurations','info', 'default.cfg'), "w", encoding='utf-8') as uasr_file:
             uasr_file.write(UASR_HEADER)
             uasr_file.write('uasr.db =\t' + '"' + database+'";'+'\n')
@@ -519,21 +545,36 @@ class CorpusDataset():
                         if len(part) >= 2 and part[0][0]!=';':
                             if part[0][0]=='_':
                                 if exceptions.get('#V'+part[0]) is None:
-                                    exceptions['#V'+part[0]] = (part[1],part[2])
+                                    exceptions['#V'+part[0]] = [[part[1],part[2]]]
+                                else:
+                                    exceptions['#V'+part[0]].append([part[1],part[2]])
                                 if exceptions.get('#C'+part[0]) is None:
-                                    exceptions['#C'+part[0]] = (part[1],part[2])
+                                    exceptions['#C'+part[0]] = [[part[1],part[2]]]
+                                else:
+                                    exceptions['#C'+part[0]].append([part[1],part[2]])
                                 if exceptions.get('$'+part[0]) is None:
-                                    exceptions['$'+part[0]] = (part[1],part[2])
+                                    exceptions['$'+part[0]] = [[part[1],part[2]]]
+                                else:
+                                    exceptions['$'+part[0]].append([part[1],part[2]])
+
                             elif part[0][-1]=='_':
                                 if exceptions.get(part[0]+'#V') is None:
-                                    exceptions[part[0]+'#V'] = (part[1],part[2])
+                                    exceptions[part[0]+'#V'] = [[part[1],part[2]]]
+                                else:
+                                    exceptions[part[0]+'#V'].append([part[1],part[2]])
                                 if exceptions.get(part[0]+'#C') is None:
-                                    exceptions[part[0]+'#C'] = (part[1],part[2])
+                                    exceptions[part[0]+'#C'] = [[part[1],part[2]]]
+                                else:
+                                    exceptions[part[0]+'#C'].append([part[1],part[2]])
                                 if exceptions.get(part[0]+'$') is None:
-                                    exceptions[part[0]+'$'] = (part[1],part[2])
+                                    exceptions[part[0]+'$'] = [[part[1],part[2]]]
+                                else:
+                                    exceptions[part[0]+'$'].append([part[1],part[2]])
                             else:
                                 if exceptions.get(part[0]) is None:
-                                    exceptions[part[0]] = (part[1],part[2])
+                                    exceptions[part[0]] = [[part[1],part[2]]]
+                                else:
+                                    exceptions[part[0]].append([part[1],part[2]])
             except FileNotFoundError:
                 print('Error opening file:', self.cfg.vars['exceptions_file'])
         return exceptions
@@ -560,8 +601,8 @@ class CorpusDataset():
                 graphemes.extend([wdlm])
                 phoneme_maps[wdlm] = (wdlm, 'S')
 
-        if len(self.cfg.vars['subword_delimiters'])==1:
-            sdlm = self.cfg.vars['subword_delimiters'][0]
+        if len(self.cfg.vars['subword_delimiter'])==1:
+            sdlm = self.cfg.vars['subword_delimiter']
             graphemes.extend(sdlm)
             phoneme_maps[sdlm] = (sdlm, 'S')
         return graphemes, phoneme_maps, vowels
@@ -782,7 +823,7 @@ class CorpusDataset():
             entry={}
             for word, prons in lex.items():
                 if len(prons[0])!=0:
-                    entry[word]=prons+[['Q']+p for p in prons if p[0] in self.vowels and word[0] not in self.cfg.vars['subword_delimiters'] ]
+                    entry[word]=prons+[['Q']+p for p in prons if p[0] in self.vowels and word[0] not in self.cfg.vars['subword_delimiter'] ]
             return entry
 
         def _check_exceptions(rules):
@@ -791,12 +832,15 @@ class CorpusDataset():
             """
 
             excps = []
+            excpr = []
             for excp in self.exceptions:
                 for rule in rules:
                     if excp in rule:
                         excps.extend([self.exceptions[excp]])
-                        return excps
-            return list(dict.fromkeys(excps))
+                        excpr.extend([excp])
+                        return excps, excpr
+            #return list(dict.fromkeys(excps)), list(dict.fromkeys(excpr))
+            return excps, excpr
 
         def _phonemize(word, phmap):
             """
@@ -819,27 +863,10 @@ class CorpusDataset():
 
                 graphs = [g for g in graphs if g != '']
 
-                #for i in graphs:
-                #    if i not in self.cfg.vars['wclass_delimiters'] and i not in self.cfg.vars['subword_delimiters']:
-                #        if phmap.get(i) is None:
-                #            # ignore phonemes not in the phonemap
-                #            continue
-                #        cmps = phmap[i][0].split(' ')
-
-                        #if self.cfg.vars['mode'] == 'uasr':
-                        #    map_temp = []
-                        #    for nmp in cmps:
-                        #        uasr_phn = self.cfg.vars['uasr_map'].get(nmp, nmp).split()
-                        #        for upn in uasr_phn:
-                        #            map_temp.append(upn)
-                        #    cmps = map_temp
-
-                #        canonical.extend(cmps)
-
                 for grp in range(len(graphs) - 2):
                     left = graphs[grp]
                     grapheme = graphs[grp + 1]
-                    if grapheme in self.cfg.vars['subword_delimiters'] or grapheme in self.cfg.vars['wclass_delimiters']:
+                    if grapheme in self.cfg.vars['subword_delimiter'] or grapheme in self.cfg.vars['wclass_delimiters']:
                         continue
                     right = graphs[grp + 2]
                     rule1 = left + '_' + grapheme + '_' + right
@@ -848,13 +875,9 @@ class CorpusDataset():
                     rule4 = ('#' + phmap[left][1] if left != '$' else '$') + '_' + \
                             grapheme + '_' + ('#' + phmap[right][1] if right != '$' else '$')
                     lrules = list(set([rule1, rule2, rule3, rule4]))
-                    excp = _check_exceptions(lrules)
+                    excp, excpr = _check_exceptions(lrules)
                     excpc = excpc + len(excp)
 
-                    #uphn = phmap[grapheme][0].split(' ')
-
-                    #if len(excp) > 0:
-                    #    uphn = ['('+'|'.join(phmap[grapheme][0].split(' ') + excp).replace('*','')+')']
 
                     # in case of multiple exception rules, takse always the first (mandatory) in the order of apearance
                     if len(excp) > 1:
@@ -866,60 +889,31 @@ class CorpusDataset():
                     #canonical.extend(phmap[grapheme][0].split(' '))
                     if len(excp) > 0:
                         #if excp[0][0] != '*':
-                        phn = excp[0][0].split(' ')
-                        if excp[0][1][0] == 'M':
+                        phn = excp[0][0][0].split(' ')
+                        rtype = excp[0][0][1][0]
+                        rule = ''.join(excpr)
+                        if rtype == 'M':
                             canonical.extend(phn)
                             #alternatives.extend(phmap[grapheme][0].split(' '))
                             alternatives.extend(phn)
-                            pattern.extend('M')
-                        elif excp[0][1][0] == 'A':
+                            pattern.extend(['M[ ' + rule + ' ]'])
+                        elif rtype == 'A':
                             canonical.extend(phmap[grapheme][0].split(' '))
                             alternatives.extend(phn)
-                            pattern.extend('A')
+                            pattern.extend(['A[ ' + rule + ' ]'])
                         else:
                             canonical.extend(phmap[grapheme][0].split(' '))
                             alternatives.extend(phmap[grapheme][0].split(' '))
-                            pattern.extend('?')
+                            pattern.extend(['?[ ' + rule + ' ]'])
                         if phmap[grapheme][1] == 'V' and '*' not in phn:
                             self.vowels.extend(phn)
                     else:
                         canonical.extend(phmap[grapheme][0].split(' '))
                         alternatives.extend(phmap[grapheme][0].split(' '))
-                        pattern.extend('C')
+                        pattern.extend(['','C'])
 
-                    #if self.cfg.vars['mode'] == 'uasr':
-                    #    map_temp = []
-                    #    for nmp in phn:
-                    #        uasr_phn = self.cfg.vars['uasr_map'].get(nmp, nmp).split()
-                    #        for upn in uasr_phn:
-                    #            map_temp.append(upn)
-                    #    phn = map_temp
-
-                    #phns.extend(phn)
-                    #prio.append(pri)
-
-                #can=[]
-                #p_phns=[]
-
-                #for idx, _ in enumerate(canonical):
-                #    if canonical[idx]!=mandatory[idx]:
-                #        can.append(mandatory[idx])
-                #        p_phns.append(mandatory[idx])
-                #    else:
-                #        can.append(canonical[idx])
-                #        if alternatives[idx]!=canonical[idx]:
-                #            p_phns.append(alternatives[idx])
-                #        else:
-                #            p_phns.append(canonical[idx])
-
-                #can = [key for key, _ in groupby(canonical)]
-                #p_phns = [key for key, _ in groupby(phns)]
-                #up_uphns = [key for key, _ in groupby(uphns)]
-
-                #can = [value for value in canonical if value != "*"]
                 can = canonical
                 if sorted(canonical)!=sorted(alternatives):
-                    #alt = [value for value in alternatives if value != "*"]
                     alt = alternatives
                     return [can, alt], pattern
                 return [can,], pattern
@@ -938,22 +932,16 @@ class CorpusDataset():
 
         for vcb in vocab:
             if self.lexicon.get(vcb) is None:
-                #cnt+=1
-               #print_progress_bar(cnt+1, lvoc, prefix='Create Lexicon:', suffix='Complete', length=50)
-                #continue
                 pron, patt = _phonemize(vcb, phoneme_maps)
-                if pron!='':# and upron!='':
+                if pron!='':
                     lex[vcb] = pron
                     expl[vcb] = patt
-                    #print(prio)
-                #ulex[vcb] = upron
                 cnt+=1
                 print_progress_bar(cnt+1, lvoc, prefix='Create Lexicon:', suffix='Complete', length=50)
 
         self.vowels = list(set(self.vowels))
 
         lex = _addq(lex)
-        #ulex = _addq(ulex)
 
         print('Lexicon completed.')
         self.lexicon = {**self.lexicon, **lex}
@@ -973,7 +961,7 @@ class CorpusDataset():
         pronunciation = []
         sents = []
         lexset = set(lex.keys())
-        sdel=self.cfg.vars['subword_delimiters'][0]
+        sdel=self.cfg.vars['subword_delimiter']
 
         for snt in sent:
             prn = []
