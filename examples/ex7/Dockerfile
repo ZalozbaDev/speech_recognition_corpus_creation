@@ -14,7 +14,10 @@ RUN apt install -y python3 python3-numpy python3-matplotlib python3-yaml
 RUN mkdir -p /output/
 RUN mkdir -p /input/
 
-COPY input/* /input/
+COPY input/tooling/*       /input/
+COPY input/configuration/* /input/
+COPY input/scripts/*       /input/
+COPY input/resources/*     /input/
 
 # tools for inspecting container
 RUN apt install -y procps nano
