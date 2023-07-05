@@ -194,16 +194,19 @@ elsif ($voice =~ m/de/)
 				
 				open(OUTHANDLE, "> mbrola_input.pho") or die ("Cannot open output file for writing!\n");
 				
+				# mbrola -i /usr/share/mbrola/de6/de6
+				
 				for ($index = 0; $index < scalar(@phones); $index++)
 				{
-					# printf "Processing %s.\n", $phones[$index];
+					printf "Processing %s.\n", $phones[$index];
 					$outputline = $phones[$index];
 					
 					# map to phonemes of MBROLA "deX" voice
 			
 					# extra length for vowels
-					if (($outputline =~ m/a/) || ($outputline =~ m/E/) || ($outputline =~ m/e/) || ($outputline =~ m/i/) ||
-						($outputline =~ m/O/) || ($outputline =~ m/o/) || ($outputline =~ m/u/) || ($outputline =~ m/1/))
+					if ((($outputline =~ m/a/) || ($outputline =~ m/E/) || ($outputline =~ m/e/) || ($outputline =~ m/i/) ||
+						($outputline =~ m/O/) || ($outputline =~ m/o/) || ($outputline =~ m/u/) || ($outputline =~ m/1/)) && 
+						!($outputline =~ m/ji/))
 					{
 						# remapping
 						$outputline =~ s/o/o:/;
@@ -212,16 +215,24 @@ elsif ($voice =~ m/de/)
 						$outputline =~ s/u/U/;
 						$outputline =~ s/1/Y/;
 						
-						$outputline = $outputline . "\t200";	
+						if (($outputline =~ m/O/) || ($outputline =~ m/E/))
+						{
+							$outputline = $outputline . "\t100";
+						}
+						else
+						{
+							$outputline = $outputline . "\t200";
+						}
 					}
 					else
 					{
 						$outputline =~ s/w/v/;
 						
 						
-						if ($outputline =~ m/I/)
+						if ($outputline =~ m/ji/)
 						{
-							$outputline = "; !!!! improvised mapping of 'Ě'!!!!\ni:\t30\nj\t30\nE\t30\n; !!!! improvised mapping of 'Ě'!!!!";
+							# $outputline = "; !!!! improvised mapping of 'Ě'!!!!\ni:\t30\nj\t30\nE\t30\n; !!!! improvised mapping of 'Ě'!!!!";
+							$outputline = "; !!!! improvised mapping of 'Ě'!!!!\ni:\t30\nj\t30\n; !!!! improvised mapping of 'Ě'!!!!";
 						}
 						elsif ($outputline =~ m/U/)
 						{
@@ -239,6 +250,10 @@ elsif ($voice =~ m/de/)
 						{
 							# $outputline = "; !!!!improvised mapping of 'dź'!!!!\nd\t50\nZ\t50\n; !!!!improvised mapping of 'dź'!!!!";
 							$outputline = "d\t50\nZ\t50";
+						}
+						elsif ($outputline =~ m/Q/)
+						{
+							$outputline = "?\t100";
 						}
 						else
 						{
