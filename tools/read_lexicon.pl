@@ -198,7 +198,7 @@ elsif ($voice =~ m/de/)
 				
 				for ($index = 0; $index < scalar(@phones); $index++)
 				{
-					printf "Processing %s.\n", $phones[$index];
+					# printf "Processing %s.\n", $phones[$index];
 					$outputline = $phones[$index];
 					
 					# map to phonemes of MBROLA "deX" voice
@@ -215,7 +215,7 @@ elsif ($voice =~ m/de/)
 						$outputline =~ s/u/U/;
 						$outputline =~ s/1/Y/;
 						
-						if (($outputline =~ m/O/) || ($outputline =~ m/E/))
+						if (($outputline =~ m/O/) || ($outputline =~ m/E/) || ($outputline =~ m/1/))
 						{
 							$outputline = $outputline . "\t100";
 						}
