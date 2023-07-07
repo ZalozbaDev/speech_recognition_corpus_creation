@@ -94,6 +94,7 @@ O_W_$	*	MANDATORY	Błótow, etapow, wosadow, rjadow ("w" na kóncu słowa po "o"
 A_Ł_$	u	MANDATORY	widźał, jednał, Michał ("ł" na kóncu słowa po "a" so změni na "u")
 A_W_$	u	MANDATORY	staw ("w" na kóncu słowa po "a" so změni na "u")
 I_Ł_$	u	MANDATORY	rozsudźił, stworił, přełožił ("ł" na kóncu słowa po "i" so změni na "u")
+Y_Ł_$	u	MANDATORY	PŘIZAMKNYŁ, ... ("ł" na kóncu słowa po "y" so změni na "u")
 ; tricky rules
 #V_W_#C	u	MANDATORY	přestawce, Žitawčanow, najnowšim, stawje, nawróća, zjawnje, sadowcami, bratrowska, powšitkownych, kralownu, sportowni ("w" před konsonantom změni so na "u") 
 O_W_#C	*	ALTERNATIVE	sadowcami, bratrowska, powšitkownych, kralownu, sportowni --> druhdy so W wuwosta
