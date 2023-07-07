@@ -32,7 +32,11 @@ _H_$	*	MANDATORY	sněh, žiwjenjoběh, wobsah ("h" na kóncu słowa so šmórny)
 _H_#C	*	MANDATORY	njewobhladujemy, zahroda, njehraje, wothłós, hrodźišću, hłós, hdźež, hłownu, hdyž, hladajće ("h" před konsonantom so šmórny)
 
 $_CH_#V	k	MANDATORY	chłódźa, Chrósćicach, chórje, chowanka, chětro, chlěbom (twjerdy "ch" za započatku, jeli njeslěduje "c", so změni na "k")
-$_CH_L	k	MANDATORY	chłódźa, Chrósćicach, chórje, chowanka, chětro, chlěbom (twjerdy "ch" za započatku, jeli njeslěduje "c", so změni na "k")
+$_CH_Ě	k	MANDATORY	CHĚŽA (dito)
+$_CH_L	k	MANDATORY	CHLĚB, CHLĚWJE (dito)
+$_CH_Ł	k	MANDATORY	CHŁÓDŹAKA, CHŁOSTAJOMNE (dito)
+$_CH_R	k	MANDATORY	CHRYSTUS, CHRÓSĆIC (dito)
+$_CH_W	k	MANDATORY	CHWALI, CHWAĆIC (dito)
 Ě_CH_	C	MANDATORY	spěchować, běchu, dźěchmy, třěchi, wuspěcha, wšěch, wujěcha, něchtó ("ch" po "ě" so změni na "C")
 $_CH_C	*	ALTERNATIVE	chcedźa, chce, chcyše, chcemy, chcu, chcych, chceće (twjerdy "ch" na započatku před "c" so šmórny)
 E_CH_	C	ALTERNATIVE	kładźechu, nańdźechu, přednjesechmy, přińdźechmy, nańdźech, potrjechi ("ch" po "e" so změni na "C")
@@ -44,10 +48,11 @@ W_I_M	1	ALTERNATIVE	dźiwim (i --> 1)
 
 I_J_$	*	MANDATORY	studij, Handrij, Maćij, gymnazij, julij, kij ("j" na kóncu słowa po "i" so šmórny)
 E_J_I	*	MANDATORY	stejimy, meji, čejim (w kombinacije "eji" so "j" šmórny)
-N_J_E	*	ALTERNATIVE	njebjeskim, njetrjebać, njecha, njeplech (j --> *)
-B_J_E	*	ALTERNATIVE	bjesada (j --> *)
-R_J_E	*	ALTERNATIVE	rjenje, rjemjeslnik (j --> *)
-W_J_E	*	ALTERNATIVE	wjeselo, skedźbliwje, wjelk, wjele, žiwjenja, zwjetša, wobsydstwje, wuměłstwje (j --> *)
+; test: these are actually "alternative" rules, because one option is "don't modify"
+N_J_E	(j|*)	MANDATORY	njebjeskim, njetrjebać, njecha, njeplech (j --> *)
+B_J_E	(j|*)	MANDATORY	bjesada (j --> *)
+R_J_E	(j|*)	MANDATORY	rjenje, rjemjeslnik (j --> *)
+W_J_E	(j|*)	MANDATORY	wjeselo, skedźbliwje, wjelk, wjele, žiwjenja, zwjetša, wobsydstwje, wuměłstwje (j --> *)
 
 E_L_Ž	*	ALTERNATIVE	dokelž
 
@@ -77,7 +82,13 @@ O_S_Ć	S	ALTERNATIVE	mudrosć, radosće, starosć, sylnosć, wěrnosć (s --> š
 #C_Ł_$	*	MANDATORY	zmysł, přinjesł, wotrostł, móhł ("ł" na kóncu po konsonanće so šmórny)
 #C_W_$	*	MANDATORY	čerw ("w" na kóncu słowa po konsonanće so šmórny)
 $_Ł_#C	*	MANDATORY	łžicy ("ł" na započatku před konsonantom so šmórny)
-$_W_#C	*	MANDATORY	wšak, wsy ("w" na započatku słowa před konsonantom so šmórny) - ale: "we wsy"
+$_W_R	*	MANDATORY	wrjesny, wrota ("w" na započatku słowa před nêkotrymi konsonantami so šmórny)
+$_W_S	*	MANDATORY	wsach, wsy (dito)  - ale: "we wsy"
+$_W_Š	*	MANDATORY	WŠĚDNE, WŠUDŹE (dito) 
+$_W_Z	*	MANDATORY	wzachu, wzdać (dito)
+$_W_Ž	*	MANDATORY	WŽIČKA (dito)
+$_W_Ć	*	MANDATORY	WĆIPNJE (dito)
+$_W_Č	*	MANDATORY	WČERAWŠEHO (dito)
 O_Ł_$	*	MANDATORY	poł, sokoł, šoł ("ł" na kóncu słowa po "o" so šmórny)
 O_W_$	*	MANDATORY	Błótow, etapow, wosadow, rjadow ("w" na kóncu słowa po "o" so šmórny)
 A_Ł_$	u	MANDATORY	widźał, jednał, Michał ("ł" na kóncu słowa po "a" so změni na "u")
