@@ -1,6 +1,6 @@
 # Corpus generation tooling manual
 
-## Configuration
+## Configuration (.yaml)
 
 - You can specify as many texts as you like in "input_txts:".
 - You can supply custom lexika which are used without processing at "hcraft_lex:". 
@@ -12,7 +12,9 @@ Put foreign words there, and other words that are special.
 
 Syntax:
 
+```code
 grapheme <TAB> default phoneme/symbol <TAB> properties
+```
 
 Examples:
 
@@ -39,7 +41,9 @@ Q	k w	C
 
 Syntax:
 
+```code
 matcher <TAB> phoneme(s)/symbol(s) <TAB> rule type <TAB> comments (ignored)
+```
 
 Examples:
 
@@ -51,7 +55,9 @@ $_CH_L	k	MANDATORY	CHLĚB, CHLĚWJE (dito)
 
 ### Matcher
 
+```code
 [PREDECESSOR]_GRAPHEME_[SUCCESSOR]
+```
 
 - PREDECESSOR and SUCCESSOR special symbols:
     - #C - all consonants
