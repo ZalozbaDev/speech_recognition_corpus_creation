@@ -50,7 +50,8 @@ Examples:
 ```code
 ; this is a comment line
 P_Ě_Š	1	ALTERNATIVE	spěšnje
-$_CH_L	k	MANDATORY	CHLĚB, CHLĚWJE (dito)
+$_CH_L	k	MANDATORY	CHLĚB, CHLĚWJE
+O_W_#C	*	ALTERNATIVE	sadowcami, bratrowska, powšitkownych, kralownu, sportowni --> druhdy so W wuwosta
 ```
 
 ### Matcher
