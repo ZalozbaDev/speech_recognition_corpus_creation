@@ -1,6 +1,6 @@
 # Corpus generation tooling manual
 
-## Configuration (.yaml)
+## Configuration (config.yaml)
 
 - You can specify as many texts as you like in "input_txts:".
 - You can supply custom lexika which are used without processing at "hcraft_lex:". 
@@ -8,7 +8,7 @@ Put foreign words there, and other words that are special.
 - Take care to specify all digraphs!
 - TBD reduction of phonetic inventory?
 
-## Phoneme inventory
+## Phoneme inventory (phonmap.txt)
 
 Syntax:
 
@@ -24,9 +24,9 @@ O	O	V
 ```
 
 Properties are:
-- C (consonant)
-- V (vowel)
-- S (TBD?)
+- C(onsonant)
+- V(owel)
+- S(TBD?)
 
 You can also remap a grapheme to more than one symbol by separating them with space.
 
@@ -37,7 +37,7 @@ X	k s	C
 Q	k w	C
 ```
 
-## Exception rules
+## Exception rules (exceptions.txt)
 
 Syntax:
 
@@ -65,7 +65,8 @@ $_CH_L	k	MANDATORY	CHLĚB, CHLĚWJE (dito)
     - $ - word boundary (start resp end of word) 
 - PREDECESSOR and SUCCESSOR can be left out
     - this is the equivalent to having 2 rules with both "#C" and "#V" instead
-
+- GRAPHEME can be "*" (= skip)
+    
 ### Phonemes/Symbols
 
 Either one symbol or a list of options:
