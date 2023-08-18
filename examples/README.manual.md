@@ -26,7 +26,7 @@ O	O	V
 Properties are:
 - C(onsonant)
 - V(owel)
-- S(TBD?)
+- S(pecial) --> special characters that should be left unprocessed, for instance to mark word classes or subword delimiters
 
 You can also remap a grapheme to more than one symbol by separating them with space.
 
