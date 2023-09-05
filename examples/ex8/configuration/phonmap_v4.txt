@@ -21,7 +21,7 @@ N	n	C
 O	O	V
 Ó	U	V
 P	p	C
-R	R	C
+R	r	C
 Ř	S	C
 S	s	C
 Š	S	C
