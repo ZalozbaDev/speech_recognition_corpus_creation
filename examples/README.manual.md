@@ -4,9 +4,9 @@
 
 - You can specify as many texts as you like in "input_txts:".
 - You can supply custom lexika which are used without processing at "hcraft_lex:". 
-Put foreign words there, and other words that are special.
+    Put foreign words there, and other words that are special.
 - Take care to specify all digraphs!
-- TBD reduction of phonetic inventory?
+- You can include handcrafted lexika with different SAMPA symbols and have them re-mapped.
 
 ## Phoneme inventory (phonmap.txt)
 

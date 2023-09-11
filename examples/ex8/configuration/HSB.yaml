@@ -1,5 +1,6 @@
 # Configuration file
 
+# place all text resources here
 input_txts:
     - ../resources/all.vocab
     - ../resources/cv.hsb
@@ -48,6 +49,7 @@ names:
     - "triphones"
 scoring_type: 1 # 1, 2 or 3; choose 2 for negative log-prob weights, 3 for sentence weights
 
+# leave this as-is unless you know what you are doing
 uasr_map:
     'w': 'U v'
     'ts': 't s'
@@ -65,13 +67,16 @@ uasr_map:
     'o': 'o:'
     'y': 'y:'
 
+# change only if your language uses other digraphs
 digraphs:
     'C_H': 'CH'
     'D_Ź': 'DŹ'
 
+# leave this as-is
 subword_delimiters:
     - '#'
 
+# leave this as-is
 wordclass_delimiters:
     - '{'
     - '}'
