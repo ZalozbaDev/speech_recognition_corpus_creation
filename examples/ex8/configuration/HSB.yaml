@@ -5,6 +5,7 @@ input_txts:
     - ../resources/all.vocab
     - ../resources/cv.hsb
     - ../resources/marytts_hsb.vocab
+    - ../resources/hsb_additional_9.vocab
 
 phoneme_inventory:  "../configuration/phonmap_v4.txt"
 exceptions_file:    "../configuration/exceptions_v4.txt"
@@ -34,6 +35,7 @@ hcraft_lex:
         - ../resources/hcraft/hcraft_lexicon_6.grm
         - ../resources/hcraft/hcraft_lexicon_7.grm
         - ../resources/hcraft/hcraft_lexicon_8.grm
+        - ../resources/hcraft/hcraft_lexicon_9.grm
         - ../resources/hcraft/hcraft_example_phonreduction.grm
 
 hcraft_lex_map: #Maps the given phonemes from the handcrafted into ones from the phoneme inventory
