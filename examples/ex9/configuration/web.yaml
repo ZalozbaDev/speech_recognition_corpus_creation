@@ -1,0 +1,71 @@
+# Configuration file
+
+# place all text resources here
+input_txts:
+    - ../resources/corpus.vocab
+
+phoneme_inventory:  "../configuration/phonmap.txt"
+exceptions_file:    "../configuration/exceptions.txt"
+output_dir:         "../output/"
+project_name:       "web_phonetics"
+database:           "db-hsb-asr"
+
+mode:       "sampa"         # "uasr" or "sampa"
+basic_type:     # "phones", "diphones", "triphones" or empty not generating sentences
+case:       "uc"            # "uc" - upper case, "lc" - lower case, "or" - original
+split:      1               # number of separate datasets
+offset:     0              # id starting number
+num_sentences: 100         # maximal number of sentences in all splits
+min_duration:  0            # minimal duration in seconds of speech per sentence (0-3s)
+no_speakers:   1            # number of possible speakers per split
+user_vocab:
+        #- "all.vocab"    # use existing vocabularies to restrict the sentences from the corpus
+        #- "user2.vocab"
+hcraft_lex:
+        #- "custom.grm"    # use existing handcrafted lexicon to skip existing pronounciation generation
+        #- "handcrafted2.vocab"
+
+hcraft_lex_map: #Maps the given phonemes from the handcrafted into ones from the phoneme inventory
+#    'I': 'ji'
+#    '6': 'r'
+#    '@': '1'
+#    'R': 'r'
+#    'a:': 'a'
+
+names:
+    - "phones"
+    - "diphones"
+    - "triphones"
+scoring_type: 1 # 1, 2 or 3; choose 2 for negative log-prob weights, 3 for sentence weights
+
+# leave this as-is unless you know what you are doing
+uasr_map:
+    'w': 'U v'
+    'ts': 't s'
+    'tS': 't S'
+    'jn': 'j n'
+    'dZ': 'd S'
+    'dS': 'd S'
+    'jn': 'j n'
+    'Z': 'S'
+    '1': 'Y'
+    'e': 'e:'
+    'i': 'i:'
+    'ij': 'i: j'
+    'u': 'u:'
+    'o': 'o:'
+    'y': 'y:'
+
+# change only if your language uses other digraphs
+digraphs:
+    'C_H': 'CH'
+    'D_Ź': 'DŹ'
+
+# leave this as-is
+subword_delimiters:
+    - '#'
+
+# leave this as-is
+wordclass_delimiters:
+    - '{'
+    - '}'
