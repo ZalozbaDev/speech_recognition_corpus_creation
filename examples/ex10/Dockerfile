@@ -2,7 +2,7 @@ FROM debian:bullseye-slim
 MAINTAINER Daniel Sobe <daniel.sobe@sorben.com>
 
 # normal call
-# docker build -t speech_recognition_corpus_creation_ex10 .
+# docker build --progress=plain -t speech_recognition_corpus_creation_ex10 .
 
 # rebuild from scratch
 # docker build -t speech_recognition_corpus_creation_ex10 . --no-cache
