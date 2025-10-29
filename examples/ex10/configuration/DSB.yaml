@@ -5,6 +5,7 @@ input_txts:
     #- ../resources/all.vocab
     #- ../resources/cv.hsb
     - ../resources/marytts_dsb.vocab
+    - ../resources/dsb_from_transcripts.vocab
     #- ../resources/hsb_additional_9.vocab
 
 phoneme_inventory:  "../configuration/phonmap_v1.txt"
